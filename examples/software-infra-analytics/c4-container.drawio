@@ -1,0 +1,67 @@
+<mxfile host="app.diagrams.net" modified="2026-06-13T18:11:47+00:00" agent="Codex drawio-software-infra-analytics" version="26.0.0" type="device">
+  <diagram id="page-c41a7691" name="c4-container Template">
+    <mxGraphModel dx="0" dy="0" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1500" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" value="c4-container Template" style="text;html=1;strokeColor=none;fillColor=none;fontSize=24;fontStyle=1;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="40" y="24" width="1420" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="boundary" value="System boundary" style="swimlane;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;startSize=28;fillColor=#F5F5F5;strokeColor=#666666;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="260" y="120" width="900" height="610" as="geometry" />
+        </mxCell>
+        <mxCell id="user" value="User" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;fontColor=#1F2933;shape=umlActor;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="70" y="340" width="130" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="web" value="Web / Mobile UI" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontColor=#1F2933;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="340" y="210" width="180" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="api" value="API Gateway" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF4FE;strokeColor=#1565C0;fontColor=#1F2933;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="610" y="210" width="180" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="svc" value="Domain Service" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF4FE;strokeColor=#1565C0;fontColor=#1F2933;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="610" y="370" width="180" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="worker" value="Async Worker" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF4FE;strokeColor=#1565C0;fontColor=#1F2933;" vertex="1" parent="1">
+          <mxGeometry x="340" y="520" width="180" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="queue" value="Queue / Event Bus" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;fontColor=#1F2933;shape=hexagon;perimeter=hexagonPerimeter2;" vertex="1" parent="1">
+          <mxGeometry x="610" y="520" width="180" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="db" value="Operational DB" style="shape=cylinder;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#E1D5E7;strokeColor=#9673A6;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="870" y="370" width="170" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="cache" value="Cache" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1D5E7;strokeColor=#9673A6;fontColor=#1F2933;" vertex="1" parent="1">
+          <mxGeometry x="870" y="520" width="170" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="external" value="External System" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontColor=#1F2933;" vertex="1" parent="1">
+          <mxGeometry x="1240" y="320" width="180" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" value="HTTPS" style="endArrow=block;html=1;rounded=1;strokeColor=#1F2933;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="user" target="web">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" value="REST/GraphQL" style="endArrow=block;html=1;rounded=1;strokeColor=#1F2933;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="web" target="api">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" value="Internal API" style="endArrow=block;html=1;rounded=1;strokeColor=#1F2933;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="api" target="svc">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" value="SQL" style="endArrow=block;html=1;rounded=1;strokeColor=#1F2933;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="svc" target="db">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" value="Publishes" style="endArrow=open;html=1;rounded=1;dashed=1;dashPattern=8 8;strokeColor=#2F855A;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="svc" target="queue">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e6" value="Consumes" style="endArrow=open;html=1;rounded=1;dashed=1;dashPattern=8 8;strokeColor=#2F855A;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="queue" target="worker">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e7" value="Updates" style="endArrow=block;html=1;rounded=1;strokeColor=#1F2933;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="worker" target="cache">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e8" value="API" style="endArrow=block;html=1;rounded=1;strokeColor=#1F2933;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="svc" target="external">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,37 @@
+<mxfile host="app.diagrams.net" modified="2026-06-13T18:05:02+00:00" agent="Codex drawio-create-diagram" version="26.0.0" type="device">
+  <diagram id="page-f20d2ea5" name="Process">
+    <mxGraphModel dx="0" dy="0" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="start" value="Start" style="rounded=1;arcSize=50;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;fontColor=#173B1A;" vertex="1" parent="1">
+          <mxGeometry x="80" y="120" width="120" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="step1" value="Receive request" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF4FE;strokeColor=#1565C0;fontColor=#0B1F33;" vertex="1" parent="1">
+          <mxGeometry x="270" y="115" width="150" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="decision" value="Complete?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;fontColor=#3B2F00;perimeter=rhombusPerimeter;" vertex="1" parent="1">
+          <mxGeometry x="500" y="105" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="end" value="Done" style="rounded=1;arcSize=50;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;fontColor=#173B1A;" vertex="1" parent="1">
+          <mxGeometry x="720" y="120" width="120" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="note1" value="Add cycle time or owner metadata as needed." style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;fillColor=#FFF2CC;strokeColor=#D6B656;" vertex="1" parent="1">
+          <mxGeometry x="270" y="230" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" value="" style="endArrow=block;html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="start" target="step1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" value="" style="endArrow=block;html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="step1" target="decision">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" value="Yes" style="endArrow=block;html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="decision" target="end">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" value="No" style="endArrow=open;html=1;rounded=1;dashed=1;dashPattern=8 8;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="decision" target="step1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

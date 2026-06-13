@@ -1,0 +1,4 @@
+interface:
+  display_name: "draw.io Software, Infra & Analytics"
+  short_description: "Software, infrastructure and analytics diagrams"
+  default_prompt: "Use $drawio-software-infra-analytics to create an editable draw.io architecture diagram."

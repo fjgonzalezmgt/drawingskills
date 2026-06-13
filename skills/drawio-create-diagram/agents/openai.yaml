@@ -1,0 +1,4 @@
+interface:
+  display_name: "draw.io Diagram Builder"
+  short_description: "Create and validate native draw.io diagrams"
+  default_prompt: "Use $drawio-create-diagram to create a valid .drawio diagram from my requirements."

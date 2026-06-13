@@ -1,0 +1,55 @@
+<mxfile host="app.diagrams.net" modified="2026-06-13T18:03:28+00:00" agent="Codex drawio-lean-six-sigma" version="26.0.0" type="device">
+  <diagram id="page-bebbeaab" name="swimlane Test">
+    <mxGraphModel dx="0" dy="0" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" value="swimlane Test" style="text;html=1;strokeColor=none;fillColor=none;fontSize=24;fontStyle=1;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="40" y="24" width="1320" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="lane0" value="Customer" style="swimlane;whiteSpace=wrap;html=1;horizontal=0;startSize=34;container=1;collapsible=0;recursiveResize=0;fillColor=#F5F5F5;strokeColor=#666666;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="110" width="1280" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="lane1" value="Operations" style="swimlane;whiteSpace=wrap;html=1;horizontal=0;startSize=34;container=1;collapsible=0;recursiveResize=0;fillColor=#F5F5F5;strokeColor=#666666;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="260" width="1280" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="lane2" value="Quality" style="swimlane;whiteSpace=wrap;html=1;horizontal=0;startSize=34;container=1;collapsible=0;recursiveResize=0;fillColor=#F5F5F5;strokeColor=#666666;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="410" width="1280" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="lane3" value="System" style="swimlane;whiteSpace=wrap;html=1;horizontal=0;startSize=34;container=1;collapsible=0;recursiveResize=0;fillColor=#F5F5F5;strokeColor=#666666;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="560" width="1280" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="s1" value="Submit request" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;fontColor=#1F2933;" vertex="1" parent="1">
+          <mxGeometry x="170" y="145" width="150" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="s2" value="Review request" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;fontColor=#1F2933;" vertex="1" parent="1">
+          <mxGeometry x="390" y="295" width="150" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="s3" value="Complete?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;perimeter=rhombusPerimeter;" vertex="1" parent="1">
+          <mxGeometry x="620" y="285" width="120" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="s4" value="Inspect" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;fontColor=#1F2933;" vertex="1" parent="1">
+          <mxGeometry x="850" y="445" width="150" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="s5" value="Record result" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;fontColor=#1F2933;" vertex="1" parent="1">
+          <mxGeometry x="1070" y="595" width="150" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="e0" value="" style="endArrow=block;html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="s1" target="s2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" value="" style="endArrow=block;html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="s2" target="s3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" value="" style="endArrow=block;html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="s3" target="s4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" value="" style="endArrow=block;html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="s4" target="s5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rework" value="No" style="endArrow=block;html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;dashed=1;dashPattern=8 8;" edge="1" parent="1" source="s3" target="s2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

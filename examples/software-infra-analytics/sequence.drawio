@@ -1,0 +1,94 @@
+<mxfile host="app.diagrams.net" modified="2026-06-13T18:11:47+00:00" agent="Codex drawio-software-infra-analytics" version="26.0.0" type="device">
+  <diagram id="page-ea797e9e" name="sequence Template">
+    <mxGraphModel dx="0" dy="0" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="850" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" value="sequence Template" style="text;html=1;strokeColor=none;fillColor=none;fontSize=24;fontStyle=1;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="40" y="24" width="1320" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="client" value="Client" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontColor=#1F2933;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="120" y="120" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="life_client" value="" style="endArrow=none;html=1;rounded=0;dashed=1;dashPattern=6 6;strokeColor=#999999;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="195" y="170" as="sourcePoint" />
+            <mxPoint x="195" y="700" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="api" value="API" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontColor=#1F2933;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="370" y="120" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="life_api" value="" style="endArrow=none;html=1;rounded=0;dashed=1;dashPattern=6 6;strokeColor=#999999;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="445" y="170" as="sourcePoint" />
+            <mxPoint x="445" y="700" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="service" value="Service" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontColor=#1F2933;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="620" y="120" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="life_service" value="" style="endArrow=none;html=1;rounded=0;dashed=1;dashPattern=6 6;strokeColor=#999999;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="695" y="170" as="sourcePoint" />
+            <mxPoint x="695" y="700" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="queue" value="Queue" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontColor=#1F2933;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="870" y="120" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="life_queue" value="" style="endArrow=none;html=1;rounded=0;dashed=1;dashPattern=6 6;strokeColor=#999999;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="945" y="170" as="sourcePoint" />
+            <mxPoint x="945" y="700" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="db" value="Database" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1D5E7;strokeColor=#9673A6;fontColor=#1F2933;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1120" y="120" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="life_db" value="" style="endArrow=none;html=1;rounded=0;dashed=1;dashPattern=6 6;strokeColor=#999999;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1195" y="170" as="sourcePoint" />
+            <mxPoint x="1195" y="700" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m1" value="1. Request" style="endArrow=block;html=1;rounded=0;strokeColor=#1F2933;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="195" y="230" as="sourcePoint" />
+            <mxPoint x="445" y="230" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m2" value="2. Validate and process" style="endArrow=block;html=1;rounded=0;strokeColor=#1F2933;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="445" y="300" as="sourcePoint" />
+            <mxPoint x="695" y="300" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m3" value="3. Read/write" style="endArrow=block;html=1;rounded=0;strokeColor=#1F2933;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="695" y="370" as="sourcePoint" />
+            <mxPoint x="1195" y="370" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m4" value="4. Publish event" style="endArrow=open;html=1;rounded=0;dashed=1;dashPattern=8 8;strokeColor=#2F855A;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="695" y="450" as="sourcePoint" />
+            <mxPoint x="945" y="450" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m5" value="5. Ack/event" style="endArrow=open;html=1;rounded=0;dashed=1;dashPattern=8 8;strokeColor=#2F855A;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="945" y="520" as="sourcePoint" />
+            <mxPoint x="695" y="520" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m6" value="6. Response" style="endArrow=open;html=1;rounded=0;dashed=1;dashPattern=3 3;strokeColor=#6C8EBF;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="445" y="610" as="sourcePoint" />
+            <mxPoint x="195" y="610" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,46 @@
+<mxfile host="app.diagrams.net" modified="2026-06-13T18:03:13+00:00" agent="Codex drawio-lean-six-sigma" version="26.0.0" type="device">
+  <diagram id="page-8d4349e7" name="SIPOC Test">
+    <mxGraphModel dx="0" dy="0" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="850" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" value="SIPOC Test" style="text;html=1;strokeColor=none;fillColor=none;fontSize=24;fontStyle=1;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="40" y="24" width="1320" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="h0" value="Suppliers" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontColor=#1F2933;fontStyle=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="50" y="110" width="250" height="52" as="geometry" />
+        </mxCell>
+        <mxCell id="b0" value="Supplier 1&lt;br&gt;Item 2&lt;br&gt;Item 3&lt;br&gt;Item 4" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#666666;fontColor=#1F2933;align=left;verticalAlign=top;spacing=14;" vertex="1" parent="1">
+          <mxGeometry x="50" y="174" width="250" height="430" as="geometry" />
+        </mxCell>
+        <mxCell id="h1" value="Inputs" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontColor=#1F2933;fontStyle=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="312" y="110" width="250" height="52" as="geometry" />
+        </mxCell>
+        <mxCell id="b1" value="Input 1&lt;br&gt;Item 2&lt;br&gt;Item 3&lt;br&gt;Item 4" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#666666;fontColor=#1F2933;align=left;verticalAlign=top;spacing=14;" vertex="1" parent="1">
+          <mxGeometry x="312" y="174" width="250" height="430" as="geometry" />
+        </mxCell>
+        <mxCell id="h2" value="Process" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontColor=#1F2933;fontStyle=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="574" y="110" width="250" height="52" as="geometry" />
+        </mxCell>
+        <mxCell id="b2" value="Proces 1&lt;br&gt;Item 2&lt;br&gt;Item 3&lt;br&gt;Item 4" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#666666;fontColor=#1F2933;align=left;verticalAlign=top;spacing=14;" vertex="1" parent="1">
+          <mxGeometry x="574" y="174" width="250" height="430" as="geometry" />
+        </mxCell>
+        <mxCell id="h3" value="Outputs" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontColor=#1F2933;fontStyle=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="836" y="110" width="250" height="52" as="geometry" />
+        </mxCell>
+        <mxCell id="b3" value="Output 1&lt;br&gt;Item 2&lt;br&gt;Item 3&lt;br&gt;Item 4" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#666666;fontColor=#1F2933;align=left;verticalAlign=top;spacing=14;" vertex="1" parent="1">
+          <mxGeometry x="836" y="174" width="250" height="430" as="geometry" />
+        </mxCell>
+        <mxCell id="h4" value="Customers" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontColor=#1F2933;fontStyle=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="1098" y="110" width="250" height="52" as="geometry" />
+        </mxCell>
+        <mxCell id="b4" value="Customer 1&lt;br&gt;Item 2&lt;br&gt;Item 3&lt;br&gt;Item 4" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#666666;fontColor=#1F2933;align=left;verticalAlign=top;spacing=14;" vertex="1" parent="1">
+          <mxGeometry x="1098" y="174" width="250" height="430" as="geometry" />
+        </mxCell>
+        <mxCell id="ctq" value="CTQ / VOC notes&lt;br&gt;Need, metric, target, source" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;fontColor=#1F2933;align=left;verticalAlign=top;spacing=12;" vertex="1" parent="1">
+          <mxGeometry x="50" y="640" width="1320" height="90" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

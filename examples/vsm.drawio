@@ -1,0 +1,91 @@
+<mxfile host="app.diagrams.net" modified="2026-06-13T18:03:28+00:00" agent="Codex drawio-lean-six-sigma" version="26.0.0" type="device">
+  <diagram id="page-b499bc32" name="vsm Test">
+    <mxGraphModel dx="0" dy="0" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1000" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" value="vsm Test" style="text;html=1;strokeColor=none;fillColor=none;fontSize=24;fontStyle=1;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="40" y="24" width="1520" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="supplier" value="Supplier" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#666666;fontColor=#1F2933;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="70" y="270" width="150" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="customer" value="Customer&lt;br&gt;Demand: ___ / day&lt;br&gt;Takt: ___" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#666666;fontColor=#1F2933;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1360" y="270" width="170" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="control" value="Production Control&lt;br&gt;Schedule / forecast" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontColor=#1F2933;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="690" y="120" width="220" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="proc0" value="Process 1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;fontColor=#1F2933;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="320" y="290" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="data0" value="CT: ___&lt;br&gt;C/O: ___&lt;br&gt;Uptime: ___&lt;br&gt;FPY: ___" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#666666;fontColor=#1F2933;fontSize=11;align=left;verticalAlign=top;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="320" y="390" width="160" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="mat0" value="" style="endArrow=block;html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;strokeWidth=2;" edge="1" parent="1" source="supplier" target="proc0">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="proc1" value="Process 2" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;fontColor=#1F2933;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="565" y="290" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="data1" value="CT: ___&lt;br&gt;C/O: ___&lt;br&gt;Uptime: ___&lt;br&gt;FPY: ___" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#666666;fontColor=#1F2933;fontSize=11;align=left;verticalAlign=top;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="565" y="390" width="160" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="mat1" value="" style="endArrow=block;html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;strokeWidth=2;" edge="1" parent="1" source="proc0" target="proc1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="inv1" value="I&lt;br&gt;___ pcs&lt;br&gt;___ days" style="triangle;whiteSpace=wrap;html=1;fillColor=#F8CECC;strokeColor=#B85450;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="500" y="315" width="55" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="proc2" value="Process 3" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;fontColor=#1F2933;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="810" y="290" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="data2" value="CT: ___&lt;br&gt;C/O: ___&lt;br&gt;Uptime: ___&lt;br&gt;FPY: ___" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#666666;fontColor=#1F2933;fontSize=11;align=left;verticalAlign=top;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="810" y="390" width="160" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="mat2" value="" style="endArrow=block;html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;strokeWidth=2;" edge="1" parent="1" source="proc1" target="proc2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="inv2" value="I&lt;br&gt;___ pcs&lt;br&gt;___ days" style="triangle;whiteSpace=wrap;html=1;fillColor=#F8CECC;strokeColor=#B85450;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="745" y="315" width="55" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="proc3" value="Process 4" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;fontColor=#1F2933;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1055" y="290" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="data3" value="CT: ___&lt;br&gt;C/O: ___&lt;br&gt;Uptime: ___&lt;br&gt;FPY: ___" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#666666;fontColor=#1F2933;fontSize=11;align=left;verticalAlign=top;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="1055" y="390" width="160" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="mat3" value="" style="endArrow=block;html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;strokeWidth=2;" edge="1" parent="1" source="proc2" target="proc3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="inv3" value="I&lt;br&gt;___ pcs&lt;br&gt;___ days" style="triangle;whiteSpace=wrap;html=1;fillColor=#F8CECC;strokeColor=#B85450;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="990" y="315" width="55" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="mat_end" value="" style="endArrow=block;html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;strokeWidth=2;" edge="1" parent="1" source="proc3" target="customer">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="info1" value="forecast" style="endArrow=block;html=1;rounded=1;endArrow=open;dashed=1;dashPattern=8 8;strokeColor=#6C8EBF;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="775" y="210" as="sourcePoint" />
+            <mxPoint x="1450" y="270" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="info2" value="schedule" style="endArrow=block;html=1;rounded=1;endArrow=open;dashed=1;dashPattern=8 8;strokeColor=#6C8EBF;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="775" y="210" as="sourcePoint" />
+            <mxPoint x="145" y="270" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="timeline_wait" value="Waiting / queue time: ___" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8CECC;strokeColor=#B85450;fontColor=#1F2933;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="320" y="680" width="840" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="timeline_va" value="Value-added time: ___" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;fontColor=#1F2933;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="320" y="735" width="840" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="summary" value="Lead time: ___    Process time: ___    VA ratio: ___%" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;fontColor=#1F2933;fontStyle=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="70" y="850" width="1460" height="55" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

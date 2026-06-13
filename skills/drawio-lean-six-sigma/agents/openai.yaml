@@ -1,0 +1,4 @@
+interface:
+  display_name: "draw.io Lean Six Sigma"
+  short_description: "Lean Six Sigma diagrams for draw.io"
+  default_prompt: "Use $drawio-lean-six-sigma to create a Lean Six Sigma diagram in draw.io."

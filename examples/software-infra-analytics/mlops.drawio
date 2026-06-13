@@ -1,0 +1,82 @@
+<mxfile host="app.diagrams.net" modified="2026-06-13T18:11:48+00:00" agent="Codex drawio-software-infra-analytics" version="26.0.0" type="device">
+  <diagram id="page-8b2fc783" name="mlops Template">
+    <mxGraphModel dx="0" dy="0" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1650" pageHeight="950" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" value="mlops Template" style="text;html=1;strokeColor=none;fillColor=none;fontSize=24;fontStyle=1;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="40" y="24" width="1570" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="train" value="Training path" style="swimlane;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;startSize=28;fillColor=#F5F5F5;strokeColor=#666666;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="70" y="150" width="930" height="300" as="geometry" />
+        </mxCell>
+        <mxCell id="serve" value="Serving path" style="swimlane;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;startSize=28;fillColor=#F5F5F5;strokeColor=#666666;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="70" y="520" width="930" height="270" as="geometry" />
+        </mxCell>
+        <mxCell id="monitor" value="Monitoring and feedback" style="swimlane;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;startSize=28;fillColor=#F5F5F5;strokeColor=#666666;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1060" y="150" width="470" height="640" as="geometry" />
+        </mxCell>
+        <mxCell id="data" value="Data sources" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1D5E7;strokeColor=#9673A6;fontColor=#1F2933;" vertex="1" parent="1">
+          <mxGeometry x="130" y="250" width="150" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="features" value="Feature engineering&lt;br&gt;Feature Store" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1D5E7;strokeColor=#9673A6;fontColor=#1F2933;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="350" y="235" width="180" height="105" as="geometry" />
+        </mxCell>
+        <mxCell id="training" value="Training pipeline" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF4FE;strokeColor=#1565C0;fontColor=#1F2933;" vertex="1" parent="1">
+          <mxGeometry x="610" y="250" width="170" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="experiments" value="Experiment tracking" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFE6CC;strokeColor=#D79B00;fontColor=#1F2933;" vertex="1" parent="1">
+          <mxGeometry x="810" y="250" width="150" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="registry" value="Model Registry" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1D5E7;strokeColor=#9673A6;fontColor=#1F2933;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="610" y="600" width="180" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="deploy" value="Deployment&lt;br&gt;batch or real-time" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF4FE;strokeColor=#1565C0;fontColor=#1F2933;" vertex="1" parent="1">
+          <mxGeometry x="350" y="590" width="180" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="app" value="ML/AI Application" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontColor=#1F2933;" vertex="1" parent="1">
+          <mxGeometry x="130" y="600" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="perf" value="Performance / Drift / Bias" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFE6CC;strokeColor=#D79B00;fontColor=#1F2933;" vertex="1" parent="1">
+          <mxGeometry x="1130" y="260" width="220" height="85" as="geometry" />
+        </mxCell>
+        <mxCell id="logs" value="Predictions / Feedback" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;fontColor=#1F2933;" vertex="1" parent="1">
+          <mxGeometry x="1130" y="430" width="220" height="85" as="geometry" />
+        </mxCell>
+        <mxCell id="retrain" value="Retraining trigger" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8CECC;strokeColor=#B85450;fontColor=#1F2933;" vertex="1" parent="1">
+          <mxGeometry x="1130" y="600" width="220" height="85" as="geometry" />
+        </mxCell>
+        <mxCell id="e0" value="" style="endArrow=block;html=1;rounded=1;strokeColor=#1F2933;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="data" target="features">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" value="" style="endArrow=block;html=1;rounded=1;strokeColor=#1F2933;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="features" target="training">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" value="" style="endArrow=block;html=1;rounded=1;strokeColor=#1F2933;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="training" target="experiments">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" value="" style="endArrow=block;html=1;rounded=1;strokeColor=#1F2933;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="training" target="registry">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" value="" style="endArrow=block;html=1;rounded=1;strokeColor=#1F2933;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="registry" target="deploy">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" value="" style="endArrow=block;html=1;rounded=1;strokeColor=#1F2933;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="deploy" target="app">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e6" value="" style="endArrow=open;html=1;rounded=1;dashed=1;dashPattern=8 8;strokeColor=#2F855A;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="app" target="logs">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e7" value="" style="endArrow=open;html=1;rounded=1;dashed=1;dashPattern=8 8;strokeColor=#2F855A;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="logs" target="perf">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e8" value="" style="endArrow=open;html=1;rounded=1;dashed=1;dashPattern=8 8;strokeColor=#2F855A;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="perf" target="retrain">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e9" value="" style="endArrow=open;html=1;rounded=1;dashed=1;dashPattern=8 8;strokeColor=#2F855A;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="retrain" target="training">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

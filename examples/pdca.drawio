@@ -1,0 +1,40 @@
+<mxfile host="app.diagrams.net" modified="2026-06-13T18:03:28+00:00" agent="Codex drawio-lean-six-sigma" version="26.0.0" type="device">
+  <diagram id="page-5587a2ae" name="pdca Test">
+    <mxGraphModel dx="0" dy="0" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="900" pageHeight="850" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" value="pdca Test" style="text;html=1;strokeColor=none;fillColor=none;fontSize=24;fontStyle=1;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="40" y="24" width="820" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="plan" value="Plan&lt;br&gt;Target, hypothesis, plan" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;fontColor=#1F2933;fontSize=15;" vertex="1" parent="1">
+          <mxGeometry x="130" y="160" width="240" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="do" value="Do&lt;br&gt;Pilot, collect evidence" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;fontColor=#1F2933;fontSize=15;" vertex="1" parent="1">
+          <mxGeometry x="520" y="160" width="240" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="check" value="Check&lt;br&gt;Compare result to target" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;fontColor=#1F2933;fontSize=15;" vertex="1" parent="1">
+          <mxGeometry x="520" y="520" width="240" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="act" value="Act&lt;br&gt;Standardize or adjust" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;fontColor=#1F2933;fontSize=15;" vertex="1" parent="1">
+          <mxGeometry x="130" y="520" width="240" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" value="" style="endArrow=block;html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="plan" target="do">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" value="" style="endArrow=block;html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="do" target="check">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" value="" style="endArrow=block;html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="check" target="act">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" value="" style="endArrow=block;html=1;rounded=1;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="act" target="plan">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="center" value="Learning loop" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontColor=#1F2933;fontStyle=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="330" y="365" width="230" height="90" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

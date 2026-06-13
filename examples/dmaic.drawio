@@ -1,0 +1,31 @@
+<mxfile host="app.diagrams.net" modified="2026-06-13T18:03:28+00:00" agent="Codex drawio-lean-six-sigma" version="26.0.0" type="device">
+  <diagram id="page-740d87dc" name="dmaic Test">
+    <mxGraphModel dx="0" dy="0" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="650" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" value="dmaic Test" style="text;html=1;strokeColor=none;fillColor=none;fontSize=24;fontStyle=1;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="40" y="24" width="1320" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="p0" value="&lt;b&gt;Define&lt;/b&gt;&lt;br&gt;Problem, customer, CTQ, charter" style="shape=singleArrow;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=14;fontColor=#1F2933;" vertex="1" parent="1">
+          <mxGeometry x="70" y="180" width="230" height="145" as="geometry" />
+        </mxCell>
+        <mxCell id="p1" value="&lt;b&gt;Measure&lt;/b&gt;&lt;br&gt;Baseline, data plan, MSA" style="shape=singleArrow;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=14;fontColor=#1F2933;" vertex="1" parent="1">
+          <mxGeometry x="325" y="180" width="230" height="145" as="geometry" />
+        </mxCell>
+        <mxCell id="p2" value="&lt;b&gt;Analyze&lt;/b&gt;&lt;br&gt;Root causes, verified drivers" style="shape=singleArrow;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=14;fontColor=#1F2933;" vertex="1" parent="1">
+          <mxGeometry x="580" y="180" width="230" height="145" as="geometry" />
+        </mxCell>
+        <mxCell id="p3" value="&lt;b&gt;Improve&lt;/b&gt;&lt;br&gt;Countermeasures, pilot" style="shape=singleArrow;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=14;fontColor=#1F2933;" vertex="1" parent="1">
+          <mxGeometry x="835" y="180" width="230" height="145" as="geometry" />
+        </mxCell>
+        <mxCell id="p4" value="&lt;b&gt;Control&lt;/b&gt;&lt;br&gt;Control plan, handoff" style="shape=singleArrow;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=14;fontColor=#1F2933;" vertex="1" parent="1">
+          <mxGeometry x="1090" y="180" width="230" height="145" as="geometry" />
+        </mxCell>
+        <mxCell id="deliverables" value="Key deliverables / tollgate evidence" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;fontColor=#1F2933;align=left;verticalAlign=top;spacing=12;" vertex="1" parent="1">
+          <mxGeometry x="70" y="410" width="1230" height="90" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

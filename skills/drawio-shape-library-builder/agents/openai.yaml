@@ -1,0 +1,4 @@
+interface:
+  display_name: "draw.io Shape Library Builder"
+  short_description: "Build custom draw.io .xml shape libraries"
+  default_prompt: "Use $drawio-shape-library-builder to create a custom draw.io shape library."
