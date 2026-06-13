@@ -4,6 +4,26 @@ Libreria de skills para crear diagramas editables de draw.io/diagrams.net desde 
 
 El foco inicial es Lean Six Sigma, mejora continua y calidad, pero el repo tambien incluye capacidades para arquitectura de software, topologias de infraestructura, cloud, Kubernetes, analitica, BI, lakehouse y MLOps.
 
+## Ubicacion en el ecosistema
+
+Este repositorio forma parte de la linea **Codex Skills / AI Workflows** del portfolio tecnico.
+
+Indice maestro:
+
+```text
+https://github.com/fjgonzalezmgt/Codex-Skills-AI-Workflows
+```
+
+Rol de este repo dentro de la estructura:
+
+```text
+Codex Skills / AI Workflows
+├── Codex-Skills-AI-Workflows        # indice maestro de la linea
+└── drawingskills                    # diagramas draw.io editables desde Codex
+```
+
+Su funcion es convertir descripciones tecnicas en diagramas editables, versionables y reutilizables para calidad, mejora continua, analitica y arquitectura tecnica.
+
 ## Contenido
 
 ```text
