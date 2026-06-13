@@ -145,6 +145,18 @@ Validar un `.drawio`:
 python .\skills\drawio-create-diagram\scripts\validate_drawio.py .\examples\sample.drawio
 ```
 
+Revisar problemas visuales por geometria:
+
+```powershell
+python .\skills\drawio-create-diagram\scripts\visual_lint_drawio.py .\examples\sample.drawio
+```
+
+Para QA final estricto:
+
+```powershell
+python .\skills\drawio-create-diagram\scripts\visual_lint_drawio.py --strict .\examples\sample.drawio
+```
+
 Validar una skill con el validador de Codex:
 
 ```powershell

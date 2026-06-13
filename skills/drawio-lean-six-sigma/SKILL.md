@@ -41,6 +41,7 @@ Validate generated files with the base skill if present:
 
 ```bash
 python ../drawio-create-diagram/scripts/validate_drawio.py sipoc.drawio
+python ../drawio-create-diagram/scripts/visual_lint_drawio.py sipoc.drawio
 ```
 
 ## Visual Conventions
@@ -62,3 +63,5 @@ Prefer native draw.io Lean Mapping stencils for VSM-specific symbols: MRP/ERP, e
 Always include the metrics users expect for the diagram type. For VSM, do not omit takt, CT, C/O, uptime, inventory/wait, customer demand, and a bottom timeline. For SIPOC, keep process steps high level. For fishbone, keep causes short and grouped by category. For A3, preserve a clear left-to-right or top-to-bottom problem-solving story.
 
 Deliver the editable `.drawio` artifact, not just Mermaid or an image, unless the user asks for another format.
+
+Before delivery, run structural validation and visual lint. If a renderer/browser is available, inspect an exported image or screenshot and adjust spacing, label size, page bounds, and connector readability before returning the file.

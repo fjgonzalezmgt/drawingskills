@@ -212,7 +212,7 @@ def build_vsm(name: str) -> ET.Element:
     edge(root, "mat_end", prev, "customer", "", "strokeWidth=2;")
     edge(root, "info1", "forecast", "customer", "", "endArrow=open;dashed=1;dashPattern=8 8;strokeColor=#6C8EBF;")
     edge(root, "info2", "schedule", "supplier", "", "endArrow=open;dashed=1;dashPattern=8 8;strokeColor=#6C8EBF;")
-    vertex(root, "kanban", "", 645, 235, 48, 95, LEAN["kanban_post"])
+    vertex(root, "kanban", "", 610, 185, 48, 95, LEAN["kanban_post"])
     vertex(root, "kaizen", "", 1020, 220, 110, 55, LEAN["kaizen_lightening_burst"])
     vertex(root, "quality", "", 1190, 505, 70, 80, LEAN["quality_problem"])
     vertex(root, "timeline_wait", "Waiting / queue time: ___", 320, 680, 840, 45, style(*PALETTE["waste"], extra="fontStyle=1;"))

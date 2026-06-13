@@ -9,7 +9,7 @@ description: Create, edit, repair, and validate native draw.io/diagrams.net diag
 
 Create uncompressed XML first. Prefer a full `<mxfile>` when saving a `.drawio` file, and a bare `<mxGraphModel>` only for fragments that will be pasted or imported.
 
-Use `scripts/drawio_json_to_xml.py` for routine node-and-edge diagrams. Use `scripts/validate_drawio.py` before delivering any `.drawio` or `.xml` file.
+Use `scripts/drawio_json_to_xml.py` for routine node-and-edge diagrams. Use `scripts/validate_drawio.py` and `scripts/visual_lint_drawio.py` before delivering any `.drawio` or `.xml` file.
 
 Read `references/drawio-xml-reference.md` when the task needs exact style syntax, editor URLs, groups, layers, or source links. Read `references/drawio-stencil-map.md` before choosing shapes for a domain-specific diagram.
 
@@ -26,6 +26,8 @@ Read `references/drawio-xml-reference.md` when the task needs exact style syntax
 7. Prefer the native draw.io stencil family for the domain: Lean VSM uses `mxgraph.lean_mapping`, Kubernetes uses `mxgraph.kubernetes`, network topology uses `mxgraph.networks`, integration/pipelines use `mxgraph.eip`, and process maps use `mxgraph.flowchart`.
 8. XML-escape labels, especially HTML labels and ampersands.
 9. Validate the result with `scripts/validate_drawio.py`.
+10. Run `scripts/visual_lint_drawio.py` and adjust geometry until there are no errors and no important warnings.
+11. When a renderer/browser is available, visually inspect an exported PNG/SVG or editor screenshot. Check for blank canvas, clipped labels, overlapping nodes, cropped native stencils, unreadable connectors, and excessive whitespace. Adjust and repeat.
 
 ## Script Usage
 
@@ -45,6 +47,18 @@ Validate:
 
 ```bash
 python scripts/validate_drawio.py output.drawio
+```
+
+Visual layout lint:
+
+```bash
+python scripts/visual_lint_drawio.py output.drawio
+```
+
+Strict visual lint for final QA:
+
+```bash
+python scripts/visual_lint_drawio.py --strict output.drawio
 ```
 
 ## JSON Spec Shape
@@ -76,3 +90,5 @@ Deliver the `.drawio` file when the user wants to open or edit the diagram. Incl
 If the user asks for PNG/SVG/PDF export, prefer draw.io Desktop CLI when available. If no exporter is available, deliver the editable `.drawio` and explain the export gap briefly.
 
 When exact built-in stencil names are uncertain, use core shapes that render everywhere, then note where a user can swap to specialized stencils in the editor.
+
+Before final delivery, report whether structural validation, visual lint, and screenshot/export review were completed. If screenshot/export review was not possible in the current environment, say that explicitly and rely on the geometry lint plus `.drawio` validation.

@@ -1,5 +1,5 @@
-<mxfile host="app.diagrams.net" modified="2026-06-13T18:34:09+00:00" agent="Codex drawio-lean-six-sigma" version="26.0.0" type="device">
-  <diagram id="page-fbbcb2ee" name="VSM Template">
+<mxfile host="app.diagrams.net" modified="2026-06-13T22:07:55+00:00" agent="Codex drawio-lean-six-sigma" version="26.0.0" type="device">
+  <diagram id="page-7565fa6c" name="VSM Template">
     <mxGraphModel dx="0" dy="0" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1000" math="0" shadow="0">
       <root>
         <mxCell id="0" />
@@ -98,7 +98,7 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="kanban" value="" style="shape=mxgraph.lean_mapping.kanban_post;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
-          <mxGeometry x="645" y="235" width="48" height="95" as="geometry" />
+          <mxGeometry x="610" y="185" width="48" height="95" as="geometry" />
         </mxCell>
         <mxCell id="kaizen" value="" style="shape=mxgraph.lean_mapping.kaizen_lightening_burst;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
           <mxGeometry x="1020" y="220" width="110" height="55" as="geometry" />

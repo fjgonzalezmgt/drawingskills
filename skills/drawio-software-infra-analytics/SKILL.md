@@ -43,6 +43,7 @@ Validate generated files with the base skill:
 
 ```bash
 python ../drawio-create-diagram/scripts/validate_drawio.py data-platform.drawio
+python ../drawio-create-diagram/scripts/visual_lint_drawio.py data-platform.drawio
 ```
 
 ## Visual Conventions
@@ -69,3 +70,5 @@ Label edges with protocols or flow meaning when useful: HTTPS, REST, gRPC, SQL, 
 For analytics architectures, include governance and data quality unless the user explicitly asks for a minimal diagram.
 
 Deliver an editable `.drawio` file, not only a screenshot or Mermaid, unless the user asks for another format.
+
+Before delivery, run structural validation and visual lint. If a renderer/browser is available, inspect an exported image or screenshot and adjust layout, labels, edge routing, page bounds, and native stencil sizing before returning the file.
