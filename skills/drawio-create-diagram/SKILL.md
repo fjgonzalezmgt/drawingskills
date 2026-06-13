@@ -1,6 +1,6 @@
 ---
 name: drawio-create-diagram
-description: Create, edit, repair, and validate native draw.io/diagrams.net diagrams in .drawio, .xml, mxfile, or mxGraphModel format. Use when Codex must turn text, code, process descriptions, architecture notes, infrastructure notes, software diagrams, analytics architecture, or tabular data into draw.io XML; inspect or fix draw.io files; generate editor URLs; or produce reusable diagrams/templates. Also trigger for drawing.io, diagrams.net, mxGraphModel, mxfile, drawio XML, diagrama draw.io, or diagramas para diagrams.net.
+description: Create, edit, repair, and validate native draw.io/diagrams.net diagrams in .drawio, .xml, mxfile, or mxGraphModel format. Use when Codex must turn text, code, process descriptions, architecture notes, infrastructure notes, software diagrams, analytics architecture, or tabular data into draw.io XML; inspect or fix draw.io files; generate editor URLs; or produce reusable diagrams/templates. Mandatory final QA requires running scripts/validate_drawio.py and scripts/visual_lint_drawio.py for generated or edited diagrams, then visually inspecting a screenshot/export when a renderer or browser is available. Do not deliver a generated .drawio without reporting these QA results. Also trigger for drawing.io, diagrams.net, mxGraphModel, mxfile, drawio XML, diagrama draw.io, or diagramas para diagrams.net.
 ---
 
 # draw.io Diagram Builder
@@ -12,6 +12,16 @@ Create uncompressed XML first. Prefer a full `<mxfile>` when saving a `.drawio` 
 Use `scripts/drawio_json_to_xml.py` for routine node-and-edge diagrams. Use `scripts/validate_drawio.py` and `scripts/visual_lint_drawio.py` before delivering any `.drawio` or `.xml` file.
 
 Read `references/drawio-xml-reference.md` when the task needs exact style syntax, editor URLs, groups, layers, or source links. Read `references/drawio-stencil-map.md` before choosing shapes for a domain-specific diagram.
+
+## Mandatory QA Gate
+
+Do not deliver a generated or edited `.drawio` file until this gate is complete:
+
+1. Run `scripts/validate_drawio.py <file>`.
+2. Run `scripts/visual_lint_drawio.py --strict <file>`.
+3. If either command fails, adjust layout/XML and rerun both commands.
+4. If a browser, draw.io Desktop, or another renderer is available, inspect an exported image or editor screenshot and adjust obvious visual problems.
+5. In the final response, state the result of structural validation, visual lint, and screenshot/export review. If screenshot/export review was unavailable, say so.
 
 ## Workflow
 

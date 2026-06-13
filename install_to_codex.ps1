@@ -11,9 +11,17 @@ if (-not (Test-Path -LiteralPath $source)) {
 }
 
 New-Item -ItemType Directory -Force -Path $Destination | Out-Null
+$destinationRoot = (Resolve-Path -LiteralPath $Destination).Path
 
 Get-ChildItem -LiteralPath $source -Directory | ForEach-Object {
     $target = Join-Path $Destination $_.Name
-    Copy-Item -LiteralPath $_.FullName -Destination $target -Recurse -Force
+    if (Test-Path -LiteralPath $target) {
+        $targetPath = (Resolve-Path -LiteralPath $target).Path
+        if (-not $targetPath.StartsWith($destinationRoot)) {
+            throw "Refusing to replace outside destination: $targetPath"
+        }
+        Remove-Item -LiteralPath $targetPath -Recurse -Force
+    }
+    Copy-Item -LiteralPath $_.FullName -Destination $Destination -Recurse -Force
     Write-Host "Installed $($_.Name) -> $target"
 }

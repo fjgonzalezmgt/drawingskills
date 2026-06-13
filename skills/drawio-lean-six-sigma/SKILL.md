@@ -1,6 +1,6 @@
 ---
 name: drawio-lean-six-sigma
-description: Create Lean Six Sigma and operational excellence diagrams as editable draw.io/diagrams.net files. Use for value stream maps (VSM), SIPOC, process maps, swimlanes, DMAIC, PDCA, A3, Ishikawa/fishbone, 5S, Kaizen, kanban, control plans, FMEA visuals, spaghetti diagrams, Pareto/storyboard layouts, and Spanish requests like mapa de valor, diagrama de flujo, mapeo de proceso, causa-efecto, mejora continua, or Lean Six Sigma en drawing.io.
+description: Create Lean Six Sigma and operational excellence diagrams as editable draw.io/diagrams.net files. Use for value stream maps (VSM), SIPOC, process maps, swimlanes, DMAIC, PDCA, A3, Ishikawa/fishbone, 5S, Kaizen, kanban, control plans, FMEA visuals, spaghetti diagrams, Pareto/storyboard layouts, and Spanish requests like mapa de valor, diagrama de flujo, mapeo de proceso, causa-efecto, mejora continua, or Lean Six Sigma en drawing.io. Mandatory final QA requires running the base skill's validate_drawio.py and visual_lint_drawio.py --strict after generating or editing a .drawio; visually inspect a screenshot/export when available; report the QA results before delivery.
 ---
 
 # draw.io Lean Six Sigma
