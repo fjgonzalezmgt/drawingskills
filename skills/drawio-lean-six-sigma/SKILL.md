@@ -9,7 +9,7 @@ description: Create Lean Six Sigma and operational excellence diagrams as editab
 
 Use this skill when the diagram is about process improvement, manufacturing, quality, operations, Lean, Six Sigma, DMAIC, or visual management.
 
-For fast templates, run `scripts/make_lss_template.py`. For detailed XML rules, also use `drawio-create-diagram` if it is available in the environment.
+For fast templates, run `scripts/make_lss_template.py`. The VSM template must use native `mxgraph.lean_mapping.*` shapes where draw.io provides them. For detailed XML rules, also use `drawio-create-diagram` if it is available in the environment.
 
 Read `references/lean-six-sigma-patterns.md` before creating a diagram that needs domain-specific structure, symbols, metrics, or layout decisions.
 
@@ -55,7 +55,7 @@ Default palette:
 - Decision/risk: `#FFF2CC` fill, `#D6B656` stroke
 - Neutral containers: `#F5F5F5` fill, `#666666` stroke
 
-Prefer core draw.io shapes for portability. Use `mxgraph.lean_mapping.*` only when exact stencil names are known or the user will finish icon-level polish in the editor.
+Prefer native draw.io Lean Mapping stencils for VSM-specific symbols: MRP/ERP, electronic/manual information flow, Kanban Post, Kaizen burst, Operator, Quality Problem, Load Leveling, Move by Forklift, Finished Goods to Customer, Verbal, and Airplane. Use core editable shapes only for process boxes, data boxes, inventory triangles, and timelines because those text-heavy VSM elements are not provided as complete native stencils.
 
 ## Quality Bar
 

@@ -8,7 +8,23 @@ draw.io references used for implementation details:
 - https://www.drawio.com/docs/reference/diagram-generation/style-reference/
 - https://www.drawio.com/docs/manual/advanced/custom-shape-libraries/
 
-The draw.io style reference lists `mxgraph.lean_mapping.*` as a built-in stencil family. Use it for icon fidelity when exact stencil names are known; otherwise, use portable core shapes.
+The draw.io style reference lists `mxgraph.lean_mapping.*` as a built-in stencil family. Use it for icon fidelity whenever the native symbol exists; otherwise, use portable core shapes.
+
+Native Lean Mapping stencil ids:
+
+- `mxgraph.lean_mapping.finished_goods_to_customer`
+- `mxgraph.lean_mapping.go_see_production_scheduling`
+- `mxgraph.lean_mapping.kaizen_lightening_burst`
+- `mxgraph.lean_mapping.kanban_post`
+- `mxgraph.lean_mapping.load_leveling`
+- `mxgraph.lean_mapping.move_by_forklift`
+- `mxgraph.lean_mapping.mrp_erp`
+- `mxgraph.lean_mapping.operator`
+- `mxgraph.lean_mapping.quality_problem`
+- `mxgraph.lean_mapping.verbal`
+- `mxgraph.lean_mapping.airplane_7`
+- `mxgraph.lean_mapping.manual_info_flow`
+- `mxgraph.lean_mapping.electronic_info_flow`
 
 ## SIPOC
 
@@ -43,6 +59,16 @@ Minimum elements:
 - Information flow arrows from control/customer/supplier.
 - Timeline at the bottom: value-added time vs waiting time.
 - Summary metrics: customer demand, takt time, total lead time, total process time.
+
+Native stencil use:
+
+- Production control / planning: `mrp_erp`, optionally `load_leveling`.
+- Information flow: `manual_info_flow` and `electronic_info_flow`.
+- Pull/visual control: `kanban_post`.
+- Improvement/risk: `kaizen_lightening_burst`, `quality_problem`.
+- Labor/material handling: `operator`, `move_by_forklift`, `finished_goods_to_customer`.
+
+Use core rectangles for process boxes and data boxes so the metric text remains easy to edit.
 
 Data box fields:
 

@@ -11,7 +11,7 @@ Create uncompressed XML first. Prefer a full `<mxfile>` when saving a `.drawio` 
 
 Use `scripts/drawio_json_to_xml.py` for routine node-and-edge diagrams. Use `scripts/validate_drawio.py` before delivering any `.drawio` or `.xml` file.
 
-Read `references/drawio-xml-reference.md` when the task needs exact style syntax, editor URLs, groups, layers, or source links.
+Read `references/drawio-xml-reference.md` when the task needs exact style syntax, editor URLs, groups, layers, or source links. Read `references/drawio-stencil-map.md` before choosing shapes for a domain-specific diagram.
 
 ## Workflow
 
@@ -23,8 +23,9 @@ Read `references/drawio-xml-reference.md` when the task needs exact style syntax
    - `<mxCell id="1" parent="0" />`
 5. Give every diagram element a unique id. Vertices use `vertex="1"`; edges use `edge="1"`. Do not set both.
 6. Use semicolon-separated style strings: `key=value;key=value;`.
-7. XML-escape labels, especially HTML labels and ampersands.
-8. Validate the result with `scripts/validate_drawio.py`.
+7. Prefer the native draw.io stencil family for the domain: Lean VSM uses `mxgraph.lean_mapping`, Kubernetes uses `mxgraph.kubernetes`, network topology uses `mxgraph.networks`, integration/pipelines use `mxgraph.eip`, and process maps use `mxgraph.flowchart`.
+8. XML-escape labels, especially HTML labels and ampersands.
+9. Validate the result with `scripts/validate_drawio.py`.
 
 ## Script Usage
 

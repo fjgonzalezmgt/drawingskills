@@ -26,6 +26,28 @@ def style(fill: str, stroke: str, extra: str = "") -> str:
     return base + extra
 
 
+def stencil(family: str, shape_id: str, extra: str = "") -> str:
+    base = f"shape=mxgraph.{family}.{shape_id};whiteSpace=wrap;html=1;"
+    return base + extra
+
+
+LEAN = {
+    "finished_goods_to_customer": stencil("lean_mapping", "finished_goods_to_customer", "aspect=fixed;"),
+    "go_see_production_scheduling": stencil("lean_mapping", "go_see_production_scheduling", "aspect=fixed;"),
+    "kaizen_lightening_burst": stencil("lean_mapping", "kaizen_lightening_burst", "aspect=fixed;"),
+    "kanban_post": stencil("lean_mapping", "kanban_post", "aspect=fixed;"),
+    "load_leveling": stencil("lean_mapping", "load_leveling", "aspect=fixed;"),
+    "move_by_forklift": stencil("lean_mapping", "move_by_forklift", "aspect=fixed;"),
+    "mrp_erp": stencil("lean_mapping", "mrp_erp", "aspect=fixed;"),
+    "operator": stencil("lean_mapping", "operator", "aspect=fixed;"),
+    "quality_problem": stencil("lean_mapping", "quality_problem", "aspect=fixed;"),
+    "verbal": stencil("lean_mapping", "verbal", "aspect=fixed;"),
+    "airplane_7": stencil("lean_mapping", "airplane_7", "aspect=fixed;"),
+    "manual_info_flow": stencil("lean_mapping", "manual_info_flow", "aspect=fixed;"),
+    "electronic_info_flow": stencil("lean_mapping", "electronic_info_flow", "aspect=fixed;"),
+}
+
+
 def graph(title: str, width: int = 1400, height: int = 900) -> tuple[ET.Element, ET.Element]:
     mxfile = ET.Element(
         "mxfile",
@@ -168,8 +190,13 @@ def build_vsm(name: str) -> ET.Element:
     mxfile, root = graph(name, 1600, 1000)
     title(root, name, 1600)
     vertex(root, "supplier", "Supplier", 70, 270, 150, 80, style(*PALETTE["neutral"], extra="fontStyle=1;"))
+    vertex(root, "forklift", "", 230, 285, 80, 85, LEAN["move_by_forklift"])
     vertex(root, "customer", "Customer<br>Demand: ___ / day<br>Takt: ___", 1360, 270, 170, 100, style(*PALETTE["neutral"], extra="fontStyle=1;"))
-    vertex(root, "control", "Production Control<br>Schedule / forecast", 690, 120, 220, 90, style(*PALETTE["info"], extra="fontStyle=1;"))
+    vertex(root, "ship_customer", "", 1255, 300, 95, 30, LEAN["finished_goods_to_customer"])
+    vertex(root, "control", "MRP / ERP<br>Production Control", 720, 95, 110, 150, LEAN["mrp_erp"] + "verticalLabelPosition=bottom;verticalAlign=top;")
+    vertex(root, "heijunka", "", 865, 145, 120, 36, LEAN["load_leveling"])
+    vertex(root, "schedule", "Schedule", 505, 145, 180, 22, LEAN["electronic_info_flow"])
+    vertex(root, "forecast", "Forecast", 1010, 145, 180, 22, LEAN["electronic_info_flow"])
     processes = ["Process 1", "Process 2", "Process 3", "Process 4"]
     prev = "supplier"
     for i, label in enumerate(processes):
@@ -177,13 +204,17 @@ def build_vsm(name: str) -> ET.Element:
         pid = f"proc{i}"
         vertex(root, pid, label, x, 290, 160, 80, style(*PALETTE["process"], extra="fontStyle=1;"))
         vertex(root, f"data{i}", "CT: ___<br>C/O: ___<br>Uptime: ___<br>FPY: ___", x, 390, 160, 95, style(*PALETTE["white"], extra="fontSize=11;align=left;verticalAlign=top;spacing=8;"))
+        vertex(root, f"operator{i}", "", x + 42, 505, 70, 60, LEAN["operator"])
         edge(root, f"mat{i}", prev, pid, "", "strokeWidth=2;")
         if i:
             vertex(root, f"inv{i}", "I<br>___ pcs<br>___ days", x - 65, 315, 55, 70, "triangle;whiteSpace=wrap;html=1;fillColor=#F8CECC;strokeColor=#B85450;fontSize=11;")
         prev = pid
     edge(root, "mat_end", prev, "customer", "", "strokeWidth=2;")
-    floating_edge(root, "info1", 775, 210, 1450, 270, "forecast", "endArrow=open;dashed=1;dashPattern=8 8;strokeColor=#6C8EBF;")
-    floating_edge(root, "info2", 775, 210, 145, 270, "schedule", "endArrow=open;dashed=1;dashPattern=8 8;strokeColor=#6C8EBF;")
+    edge(root, "info1", "forecast", "customer", "", "endArrow=open;dashed=1;dashPattern=8 8;strokeColor=#6C8EBF;")
+    edge(root, "info2", "schedule", "supplier", "", "endArrow=open;dashed=1;dashPattern=8 8;strokeColor=#6C8EBF;")
+    vertex(root, "kanban", "", 645, 235, 48, 95, LEAN["kanban_post"])
+    vertex(root, "kaizen", "", 1020, 220, 110, 55, LEAN["kaizen_lightening_burst"])
+    vertex(root, "quality", "", 1190, 505, 70, 80, LEAN["quality_problem"])
     vertex(root, "timeline_wait", "Waiting / queue time: ___", 320, 680, 840, 45, style(*PALETTE["waste"], extra="fontStyle=1;"))
     vertex(root, "timeline_va", "Value-added time: ___", 320, 735, 840, 45, style(*PALETTE["process"], extra="fontStyle=1;"))
     vertex(root, "summary", "Lead time: ___    Process time: ___    VA ratio: ___%", 70, 850, 1460, 55, style(*PALETTE["risk"], extra="fontStyle=1;fontSize=16;"))

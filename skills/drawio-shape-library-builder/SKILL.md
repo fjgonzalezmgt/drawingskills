@@ -9,7 +9,7 @@ description: Build, edit, validate, and share custom draw.io/diagrams.net shape 
 
 Create a draw.io custom shape library when the user wants reusable shapes in the left sidebar, a portable `.xml` library file, or a hosted library URL that opens in diagrams.net.
 
-Use `scripts/make_mxlibrary.py` to assemble libraries from JSON, embedded XML snippets, local SVG/PNG/JPG/GIF files, or a built-in Lean Six Sigma sample.
+Use `scripts/make_mxlibrary.py` to assemble libraries from JSON, embedded XML snippets, local SVG/PNG/JPG/GIF files, or built-in samples. Built-in samples must use native draw.io stencils where available.
 
 Read `references/custom-library-format.md` for exact format rules and sharing notes.
 

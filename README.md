@@ -21,6 +21,18 @@ examples/
 
 ## Skills
 
+## Uso de librerias nativas de draw.io
+
+Los generadores priorizan stencils nativas cuando draw.io trae una biblioteca apropiada:
+
+- VSM: `mxgraph.lean_mapping.*`
+- Kubernetes: `mxgraph.kubernetes.*`
+- Topologias de infraestructura: `mxgraph.networks.*`
+- Integracion, mensajeria y pipelines: `mxgraph.eip.*`
+- Flowcharts/procesos: `mxgraph.flowchart.*` cuando se requiere simbologia estricta
+
+Cuando draw.io no trae una stencil completa para un elemento, por ejemplo cajas de proceso y data boxes de VSM, se usan shapes base editables para conservar texto, metricas y formato.
+
 ### `drawio-create-diagram`
 
 Skill base para crear, reparar y validar archivos `.drawio`, `.xml`, `<mxfile>` y `<mxGraphModel>`.

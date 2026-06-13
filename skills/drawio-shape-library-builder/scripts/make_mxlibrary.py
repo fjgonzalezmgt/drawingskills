@@ -14,17 +14,33 @@ from xml.etree import ElementTree as ET
 
 
 def fragment(label: str, style: str, w: int, h: int) -> str:
-    return (
-        '<mxGraphModel dx="0" dy="0" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" math="0" shadow="0">'
-        "<root>"
-        '<mxCell id="0" />'
-        '<mxCell id="1" parent="0" />'
-        f'<mxCell id="2" value="{label}" style="{style}" vertex="1" parent="1">'
-        f'<mxGeometry width="{w}" height="{h}" as="geometry" />'
-        "</mxCell>"
-        "</root>"
-        "</mxGraphModel>"
+    model = ET.Element(
+        "mxGraphModel",
+        {
+            "dx": "0",
+            "dy": "0",
+            "grid": "1",
+            "gridSize": "10",
+            "guides": "1",
+            "tooltips": "1",
+            "connect": "1",
+            "arrows": "1",
+            "fold": "1",
+            "page": "0",
+            "math": "0",
+            "shadow": "0",
+        },
     )
+    root = ET.SubElement(model, "root")
+    ET.SubElement(root, "mxCell", {"id": "0"})
+    ET.SubElement(root, "mxCell", {"id": "1", "parent": "0"})
+    cell = ET.SubElement(root, "mxCell", {"id": "2", "value": label, "style": style, "vertex": "1", "parent": "1"})
+    ET.SubElement(cell, "mxGeometry", {"width": str(w), "height": str(h), "as": "geometry"})
+    return ET.tostring(model, encoding="unicode", short_empty_elements=True)
+
+
+def native_fragment(label: str, family: str, shape_id: str, w: int, h: int, extra_style: str = "") -> str:
+    return fragment(label, f"shape=mxgraph.{family}.{shape_id};whiteSpace=wrap;html=1;{extra_style}", w, h)
 
 
 def sample_lean_spec() -> dict:
@@ -60,24 +76,14 @@ def sample_lean_spec() -> dict:
                 "tags": "kaizen improvement opportunity burst",
                 "w": 140,
                 "h": 100,
-                "xml": fragment(
-                    "Kaizen<br>___",
-                    "shape=cloud;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;fontStyle=1;",
-                    140,
-                    100,
-                ),
+                "xml": native_fragment("Kaizen<br>___", "lean_mapping", "kaizen_lightening_burst", 140, 100, "aspect=fixed;"),
             },
             {
-                "title": "Kanban card",
-                "tags": "kanban pull replenishment card",
-                "w": 190,
-                "h": 110,
-                "xml": fragment(
-                    "<b>KANBAN</b><br>Part: ___<br>Qty: ___<br>Location: ___",
-                    "rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#666666;align=left;verticalAlign=top;spacing=10;",
-                    190,
-                    110,
-                ),
+                "title": "Kanban post",
+                "tags": "kanban post pull replenishment card",
+                "w": 80,
+                "h": 130,
+                "xml": native_fragment("Kanban", "lean_mapping", "kanban_post", 80, 130, "aspect=fixed;verticalLabelPosition=bottom;verticalAlign=top;"),
             },
             {
                 "title": "VSM data box",
@@ -102,6 +108,34 @@ def sample_lean_spec() -> dict:
                     80,
                     80,
                 ),
+            },
+            {
+                "title": "MRP ERP",
+                "tags": "vsm production control mrp erp schedule",
+                "w": 100,
+                "h": 140,
+                "xml": native_fragment("MRP / ERP", "lean_mapping", "mrp_erp", 100, 140, "aspect=fixed;verticalLabelPosition=bottom;verticalAlign=top;"),
+            },
+            {
+                "title": "Electronic info flow",
+                "tags": "vsm information flow electronic forecast schedule",
+                "w": 170,
+                "h": 32,
+                "xml": native_fragment("Electronic info", "lean_mapping", "electronic_info_flow", 170, 32, "aspect=fixed;"),
+            },
+            {
+                "title": "Operator",
+                "tags": "vsm operator labor person",
+                "w": 100,
+                "h": 95,
+                "xml": native_fragment("Operator", "lean_mapping", "operator", 100, 95, "aspect=fixed;verticalLabelPosition=bottom;verticalAlign=top;"),
+            },
+            {
+                "title": "Quality problem",
+                "tags": "vsm quality defect problem",
+                "w": 95,
+                "h": 110,
+                "xml": native_fragment("Quality", "lean_mapping", "quality_problem", 95, 110, "aspect=fixed;verticalLabelPosition=bottom;verticalAlign=top;"),
             },
         ],
     }
@@ -152,12 +186,7 @@ def sample_architecture_spec() -> dict:
                 "tags": "queue event stream kafka pubsub messaging",
                 "w": 190,
                 "h": 80,
-                "xml": fragment(
-                    "<b>Event Bus</b><br>events / stream",
-                    "shape=hexagon;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;perimeter=hexagonPerimeter2;fontColor=#173B1A;",
-                    190,
-                    80,
-                ),
+                "xml": native_fragment("Event Bus", "eip", "message_1", 190, 80, "aspect=fixed;verticalLabelPosition=bottom;verticalAlign=top;"),
             },
             {
                 "title": "Warehouse",
@@ -176,12 +205,7 @@ def sample_architecture_spec() -> dict:
                 "tags": "data quality validation dq control",
                 "w": 190,
                 "h": 80,
-                "xml": fragment(
-                    "<b>Data Quality</b><br>rules / checks",
-                    "rounded=1;whiteSpace=wrap;html=1;fillColor=#FFE6CC;strokeColor=#D79B00;fontColor=#3B2500;",
-                    190,
-                    80,
-                ),
+                "xml": native_fragment("Data Quality", "eip", "content_filter", 190, 100, "aspect=fixed;verticalLabelPosition=bottom;verticalAlign=top;"),
             },
             {
                 "title": "Governance catalog",
@@ -212,24 +236,14 @@ def sample_architecture_spec() -> dict:
                 "tags": "observability monitoring logs metrics traces alerts",
                 "w": 210,
                 "h": 80,
-                "xml": fragment(
-                    "<b>Observability</b><br>logs / metrics / traces",
-                    "rounded=1;whiteSpace=wrap;html=1;fillColor=#FFE6CC;strokeColor=#D79B00;fontColor=#3B2500;",
-                    210,
-                    80,
-                ),
+                "xml": native_fragment("Observability", "eip", "wire_tap", 210, 100, "aspect=fixed;verticalLabelPosition=bottom;verticalAlign=top;"),
             },
             {
                 "title": "Security control",
                 "tags": "security control waf iam firewall secrets",
                 "w": 190,
                 "h": 80,
-                "xml": fragment(
-                    "<b>Security</b><br>IAM / WAF / secrets",
-                    "rounded=1;whiteSpace=wrap;html=1;fillColor=#F8CECC;strokeColor=#B85450;fontColor=#4A1D1B;",
-                    190,
-                    80,
-                ),
+                "xml": native_fragment("Firewall / Security", "networks", "firewall", 130, 130, "aspect=fixed;verticalLabelPosition=bottom;verticalAlign=top;"),
             },
         ],
     }

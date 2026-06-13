@@ -1,5 +1,5 @@
-<mxfile host="app.diagrams.net" modified="2026-06-13T18:11:48+00:00" agent="Codex drawio-software-infra-analytics" version="26.0.0" type="device">
-  <diagram id="page-1dec3512" name="data-platform Template">
+<mxfile host="app.diagrams.net" modified="2026-06-13T18:34:14+00:00" agent="Codex drawio-software-infra-analytics" version="26.0.0" type="device">
+  <diagram id="page-05181e85" name="data-platform Template">
     <mxGraphModel dx="0" dy="0" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1700" pageHeight="1000" math="0" shadow="0">
       <root>
         <mxCell id="0" />
@@ -34,11 +34,11 @@
         <mxCell id="files" value="Files / IoT / Logs" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1D5E7;strokeColor=#9673A6;fontColor=#1F2933;" vertex="1" parent="1">
           <mxGeometry x="90" y="520" width="150" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="batch" value="Batch / ELT" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF4FE;strokeColor=#1565C0;fontColor=#1F2933;" vertex="1" parent="1">
-          <mxGeometry x="330" y="260" width="150" height="70" as="geometry" />
+        <mxCell id="batch" value="Batch / ELT" style="shape=mxgraph.eip.channel_adapter;whiteSpace=wrap;html=1;aspect=fixed;verticalLabelPosition=bottom;verticalAlign=top;align=center;" vertex="1" parent="1">
+          <mxGeometry x="345" y="240" width="120" height="95" as="geometry" />
         </mxCell>
-        <mxCell id="cdc" value="CDC / Streaming" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;fontColor=#1F2933;shape=hexagon;perimeter=hexagonPerimeter2;" vertex="1" parent="1">
-          <mxGeometry x="330" y="430" width="150" height="70" as="geometry" />
+        <mxCell id="cdc" value="CDC / Streaming" style="shape=mxgraph.eip.message_1;whiteSpace=wrap;html=1;aspect=fixed;verticalLabelPosition=bottom;verticalAlign=top;align=center;" vertex="1" parent="1">
+          <mxGeometry x="345" y="410" width="120" height="95" as="geometry" />
         </mxCell>
         <mxCell id="raw" value="Raw / Landing" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1D5E7;strokeColor=#9673A6;fontColor=#1F2933;" vertex="1" parent="1">
           <mxGeometry x="575" y="230" width="150" height="80" as="geometry" />
@@ -46,11 +46,11 @@
         <mxCell id="lake" value="Data Lake" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1D5E7;strokeColor=#9673A6;fontColor=#1F2933;" vertex="1" parent="1">
           <mxGeometry x="575" y="380" width="150" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="quality" value="Data Quality" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFE6CC;strokeColor=#D79B00;fontColor=#1F2933;" vertex="1" parent="1">
-          <mxGeometry x="830" y="260" width="150" height="70" as="geometry" />
+        <mxCell id="quality" value="Data Quality" style="shape=mxgraph.eip.content_filter;whiteSpace=wrap;html=1;aspect=fixed;verticalLabelPosition=bottom;verticalAlign=top;align=center;" vertex="1" parent="1">
+          <mxGeometry x="840" y="240" width="120" height="95" as="geometry" />
         </mxCell>
-        <mxCell id="transform" value="Transform / Model" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF4FE;strokeColor=#1565C0;fontColor=#1F2933;" vertex="1" parent="1">
-          <mxGeometry x="830" y="430" width="150" height="70" as="geometry" />
+        <mxCell id="transform" value="Transform / Model" style="shape=mxgraph.eip.message_translator;whiteSpace=wrap;html=1;aspect=fixed;verticalLabelPosition=bottom;verticalAlign=top;align=center;" vertex="1" parent="1">
+          <mxGeometry x="840" y="410" width="120" height="95" as="geometry" />
         </mxCell>
         <mxCell id="warehouse" value="Warehouse / Lakehouse" style="shape=cylinder;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#E1D5E7;strokeColor=#9673A6;" vertex="1" parent="1">
           <mxGeometry x="1090" y="260" width="160" height="90" as="geometry" />

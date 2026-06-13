@@ -1,5 +1,5 @@
-<mxfile host="app.diagrams.net" modified="2026-06-13T18:11:48+00:00" agent="Codex drawio-software-infra-analytics" version="26.0.0" type="device">
-  <diagram id="page-8b2fc783" name="mlops Template">
+<mxfile host="app.diagrams.net" modified="2026-06-13T18:34:15+00:00" agent="Codex drawio-software-infra-analytics" version="26.0.0" type="device">
+  <diagram id="page-bd824599" name="mlops Template">
     <mxGraphModel dx="0" dy="0" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1650" pageHeight="950" math="0" shadow="0">
       <root>
         <mxCell id="0" />
@@ -22,11 +22,11 @@
         <mxCell id="features" value="Feature engineering&lt;br&gt;Feature Store" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1D5E7;strokeColor=#9673A6;fontColor=#1F2933;fontStyle=1;" vertex="1" parent="1">
           <mxGeometry x="350" y="235" width="180" height="105" as="geometry" />
         </mxCell>
-        <mxCell id="training" value="Training pipeline" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF4FE;strokeColor=#1565C0;fontColor=#1F2933;" vertex="1" parent="1">
-          <mxGeometry x="610" y="250" width="170" height="75" as="geometry" />
+        <mxCell id="training" value="Training pipeline" style="shape=mxgraph.eip.process_manager;whiteSpace=wrap;html=1;aspect=fixed;verticalLabelPosition=bottom;verticalAlign=top;align=center;" vertex="1" parent="1">
+          <mxGeometry x="625" y="235" width="140" height="105" as="geometry" />
         </mxCell>
-        <mxCell id="experiments" value="Experiment tracking" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFE6CC;strokeColor=#D79B00;fontColor=#1F2933;" vertex="1" parent="1">
-          <mxGeometry x="810" y="250" width="150" height="75" as="geometry" />
+        <mxCell id="experiments" value="Experiment tracking" style="shape=mxgraph.eip.wire_tap;whiteSpace=wrap;html=1;aspect=fixed;verticalLabelPosition=bottom;verticalAlign=top;align=center;" vertex="1" parent="1">
+          <mxGeometry x="825" y="235" width="120" height="105" as="geometry" />
         </mxCell>
         <mxCell id="registry" value="Model Registry" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1D5E7;strokeColor=#9673A6;fontColor=#1F2933;fontStyle=1;" vertex="1" parent="1">
           <mxGeometry x="610" y="600" width="180" height="80" as="geometry" />

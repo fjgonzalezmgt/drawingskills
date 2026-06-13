@@ -89,7 +89,7 @@ For Lean Six Sigma, package frequently reused fragments rather than too many tin
 - SIPOC column starter
 - Control plan block
 
-Use built-in draw.io shape libraries during actual diagram creation when icon fidelity matters.
+Use built-in draw.io shape libraries during actual diagram creation when icon fidelity matters. The included Lean sample uses `mxgraph.lean_mapping.*` for Kaizen, Kanban Post, MRP/ERP, information flow, Operator, and Quality Problem.
 
 ## Software, Infrastructure, and Analytics Library Strategy
 
@@ -108,4 +108,4 @@ Package reusable architecture fragments:
 - Observability block
 - Security control
 
-Prefer editable XML fragments over raster icons for architecture primitives. Use data URI images only for product logos or vendor icons the user provides.
+Prefer editable XML fragments over raster icons for architecture primitives. Use `mxgraph.kubernetes.*`, `mxgraph.networks.*`, and `mxgraph.eip.*` where those stencils match the shape. Use data URI images only for product logos or vendor icons the user provides.

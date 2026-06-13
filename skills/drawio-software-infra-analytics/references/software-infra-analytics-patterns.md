@@ -2,9 +2,18 @@
 
 ## Source Notes
 
-Use the base draw.io XML guidance from `drawio-create-diagram` when available. draw.io's style reference lists core shape families plus stencil families such as `mxgraph.uml.*`, `mxgraph.aws4.*`, `mxgraph.azure.*`, `mxgraph.gcp.*`, `mxgraph.kubernetes.*`, `mxgraph.er.*`, `mxgraph.eip.*`, and networking libraries.
+Use the base draw.io XML guidance from `drawio-create-diagram` when available. draw.io's standard stencils include `mxgraph.kubernetes.*`, `mxgraph.eip.*`, `mxgraph.networks.*`, `mxgraph.aws4.*`, `mxgraph.azure.*`, `mxgraph.gcp.*`, `mxgraph.er.*`, and process/flowchart libraries.
 
-Prefer portable core shapes first. Use branded/vendor stencils when the user asks for AWS/Azure/GCP/Kubernetes icon fidelity.
+Prefer native domain stencils first when the diagram type has a matching draw.io library. Use portable core shapes only for boundaries, text-heavy boxes, and domains without a standard stencil such as C4.
+
+Stencil selection:
+
+- C4 context/container: core C4-style boxes and `shape=umlActor`; draw.io has no standard C4 stencil in the default stencil directory.
+- Sequence: core UML actor/lifeline style and line conventions.
+- Kubernetes: `mxgraph.kubernetes.ing`, `svc`, `deploy`, `pod`, `cm`, `secret`, `pvc`, `pv`, `ns`, `node`.
+- Network/deployment topology: `mxgraph.networks.users`, `cloud`, `firewall`, `load_balancer`, `server`, `web_server`, `storage`, `router`, `switch`.
+- Integration and data pipelines: `mxgraph.eip.channel_adapter`, `message_1`, `message_store`, `message_translator`, `content_filter`, `wire_tap`, `service_activator`, `process_manager`.
+- Cloud provider architecture: use `mxgraph.aws4.*`, `mxgraph.azure.*`, or `mxgraph.gcp.*` when the user names a provider; otherwise use `mxgraph.networks.*` for vendor-neutral topology.
 
 ## C4 and Software Architecture
 

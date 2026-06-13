@@ -1,5 +1,5 @@
-<mxfile host="app.diagrams.net" modified="2026-06-13T18:11:47+00:00" agent="Codex drawio-software-infra-analytics" version="26.0.0" type="device">
-  <diagram id="page-34475cb5" name="deployment-topology Template">
+<mxfile host="app.diagrams.net" modified="2026-06-13T18:34:14+00:00" agent="Codex drawio-software-infra-analytics" version="26.0.0" type="device">
+  <diagram id="page-7bf5341a" name="deployment-topology Template">
     <mxGraphModel dx="0" dy="0" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1000" math="0" shadow="0">
       <root>
         <mxCell id="0" />
@@ -19,26 +19,26 @@
         <mxCell id="datazone" value="Data Zone" style="swimlane;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;startSize=28;fillColor=#F5F5F5;strokeColor=#666666;fontStyle=1;" vertex="1" parent="1">
           <mxGeometry x="1180" y="120" width="340" height="720" as="geometry" />
         </mxCell>
-        <mxCell id="users" value="Users / Partners" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;fontColor=#1F2933;shape=umlActor;fontStyle=1;" vertex="1" parent="1">
-          <mxGeometry x="90" y="330" width="140" height="80" as="geometry" />
+        <mxCell id="users" value="Users / Partners" style="shape=mxgraph.networks.users;whiteSpace=wrap;html=1;aspect=fixed;verticalLabelPosition=bottom;verticalAlign=top;align=center;" vertex="1" parent="1">
+          <mxGeometry x="90" y="330" width="110" height="120" as="geometry" />
         </mxCell>
-        <mxCell id="dns" value="DNS / CDN" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontColor=#1F2933;" vertex="1" parent="1">
-          <mxGeometry x="365" y="220" width="170" height="70" as="geometry" />
+        <mxCell id="dns" value="DNS / CDN" style="shape=mxgraph.networks.cloud;whiteSpace=wrap;html=1;aspect=fixed;verticalLabelPosition=bottom;verticalAlign=top;align=center;" vertex="1" parent="1">
+          <mxGeometry x="390" y="210" width="120" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="waf" value="WAF / Firewall" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8CECC;strokeColor=#B85450;fontColor=#1F2933;fontStyle=1;" vertex="1" parent="1">
-          <mxGeometry x="365" y="340" width="170" height="70" as="geometry" />
+        <mxCell id="waf" value="WAF / Firewall" style="shape=mxgraph.networks.firewall;whiteSpace=wrap;html=1;aspect=fixed;verticalLabelPosition=bottom;verticalAlign=top;align=center;" vertex="1" parent="1">
+          <mxGeometry x="390" y="330" width="120" height="120" as="geometry" />
         </mxCell>
-        <mxCell id="lb" value="Load Balancer" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF4FE;strokeColor=#1565C0;fontColor=#1F2933;" vertex="1" parent="1">
-          <mxGeometry x="365" y="460" width="170" height="70" as="geometry" />
+        <mxCell id="lb" value="Load Balancer" style="shape=mxgraph.networks.load_balancer;whiteSpace=wrap;html=1;aspect=fixed;verticalLabelPosition=bottom;verticalAlign=top;align=center;" vertex="1" parent="1">
+          <mxGeometry x="380" y="500" width="150" height="45" as="geometry" />
         </mxCell>
-        <mxCell id="app1" value="App Service A" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF4FE;strokeColor=#1565C0;fontColor=#1F2933;" vertex="1" parent="1">
-          <mxGeometry x="700" y="270" width="170" height="75" as="geometry" />
+        <mxCell id="app1" value="App Service A" style="shape=mxgraph.networks.server;whiteSpace=wrap;html=1;aspect=fixed;verticalLabelPosition=bottom;verticalAlign=top;align=center;" vertex="1" parent="1">
+          <mxGeometry x="720" y="260" width="120" height="130" as="geometry" />
         </mxCell>
-        <mxCell id="app2" value="App Service B" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF4FE;strokeColor=#1565C0;fontColor=#1F2933;" vertex="1" parent="1">
-          <mxGeometry x="920" y="270" width="170" height="75" as="geometry" />
+        <mxCell id="app2" value="App Service B" style="shape=mxgraph.networks.server;whiteSpace=wrap;html=1;aspect=fixed;verticalLabelPosition=bottom;verticalAlign=top;align=center;" vertex="1" parent="1">
+          <mxGeometry x="950" y="260" width="120" height="130" as="geometry" />
         </mxCell>
-        <mxCell id="worker" value="Worker / Job" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF4FE;strokeColor=#1565C0;fontColor=#1F2933;" vertex="1" parent="1">
-          <mxGeometry x="810" y="430" width="170" height="75" as="geometry" />
+        <mxCell id="worker" value="Worker / Job" style="shape=mxgraph.networks.server;whiteSpace=wrap;html=1;aspect=fixed;verticalLabelPosition=bottom;verticalAlign=top;align=center;" vertex="1" parent="1">
+          <mxGeometry x="835" y="430" width="120" height="130" as="geometry" />
         </mxCell>
         <mxCell id="queue" value="Queue / Stream" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;fontColor=#1F2933;shape=hexagon;perimeter=hexagonPerimeter2;" vertex="1" parent="1">
           <mxGeometry x="810" y="590" width="170" height="75" as="geometry" />
@@ -46,8 +46,8 @@
         <mxCell id="db" value="Primary DB" style="shape=cylinder;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#E1D5E7;strokeColor=#9673A6;" vertex="1" parent="1">
           <mxGeometry x="1240" y="280" width="170" height="90" as="geometry" />
         </mxCell>
-        <mxCell id="obj" value="Object Storage" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1D5E7;strokeColor=#9673A6;fontColor=#1F2933;" vertex="1" parent="1">
-          <mxGeometry x="1240" y="450" width="170" height="80" as="geometry" />
+        <mxCell id="obj" value="Object Storage" style="shape=mxgraph.networks.storage;whiteSpace=wrap;html=1;aspect=fixed;verticalLabelPosition=bottom;verticalAlign=top;align=center;" vertex="1" parent="1">
+          <mxGeometry x="1255" y="440" width="130" height="120" as="geometry" />
         </mxCell>
         <mxCell id="obs" value="Logs / Metrics / Traces" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFE6CC;strokeColor=#D79B00;fontColor=#1F2933;" vertex="1" parent="1">
           <mxGeometry x="1240" y="610" width="190" height="80" as="geometry" />

@@ -1,5 +1,5 @@
-<mxfile host="app.diagrams.net" modified="2026-06-13T18:11:48+00:00" agent="Codex drawio-software-infra-analytics" version="26.0.0" type="device">
-  <diagram id="page-111cd3d1" name="lakehouse Template">
+<mxfile host="app.diagrams.net" modified="2026-06-13T18:34:15+00:00" agent="Codex drawio-software-infra-analytics" version="26.0.0" type="device">
+  <diagram id="page-22f60fe3" name="lakehouse Template">
     <mxGraphModel dx="0" dy="0" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="900" math="0" shadow="0">
       <root>
         <mxCell id="0" />
@@ -10,8 +10,8 @@
         <mxCell id="sources" value="Data sources&lt;br&gt;apps, DBs, SaaS, files" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontColor=#1F2933;" vertex="1" parent="1">
           <mxGeometry x="70" y="360" width="180" height="90" as="geometry" />
         </mxCell>
-        <mxCell id="ingest" value="Ingestion&lt;br&gt;batch / CDC / stream" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;fontColor=#1F2933;shape=hexagon;perimeter=hexagonPerimeter2;" vertex="1" parent="1">
-          <mxGeometry x="310" y="360" width="190" height="90" as="geometry" />
+        <mxCell id="ingest" value="Ingestion&lt;br&gt;batch / CDC / stream" style="shape=mxgraph.eip.channel_adapter;whiteSpace=wrap;html=1;aspect=fixed;verticalLabelPosition=bottom;verticalAlign=top;align=center;" vertex="1" parent="1">
+          <mxGeometry x="335" y="335" width="140" height="120" as="geometry" />
         </mxCell>
         <mxCell id="bronze" value="Bronze&lt;br&gt;raw immutable" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8CECC;strokeColor=#B85450;fontStyle=1;fontSize=15;" vertex="1" parent="1">
           <mxGeometry x="580" y="300" width="180" height="180" as="geometry" />
@@ -25,7 +25,7 @@
         <mxCell id="catalog" value="Catalog / Governance / Security" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8CECC;strokeColor=#B85450;fontColor=#1F2933;fontStyle=1;" vertex="1" parent="1">
           <mxGeometry x="600" y="560" width="620" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="compute" value="Compute engines&lt;br&gt;SQL / Spark / notebooks" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF4FE;strokeColor=#1565C0;fontColor=#1F2933;" vertex="1" parent="1">
+        <mxCell id="compute" value="Compute engines&lt;br&gt;SQL / Spark / notebooks" style="shape=mxgraph.eip.message_translator;whiteSpace=wrap;html=1;aspect=fixed;verticalLabelPosition=bottom;verticalAlign=top;align=center;" vertex="1" parent="1">
           <mxGeometry x="720" y="160" width="360" height="80" as="geometry" />
         </mxCell>
         <mxCell id="consumers" value="BI / ML / APIs / Reverse ETL" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontColor=#1F2933;fontStyle=1;" vertex="1" parent="1">

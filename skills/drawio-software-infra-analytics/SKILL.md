@@ -47,7 +47,7 @@ python ../drawio-create-diagram/scripts/validate_drawio.py data-platform.drawio
 
 ## Visual Conventions
 
-Use stable, vendor-neutral shapes by default. Use draw.io cloud stencil names only when exact icons are important and known. Architecture diagrams should be editable and understandable even if specialized icon libraries are unavailable.
+Use native draw.io stencils when they match the domain: `mxgraph.kubernetes.*` for Kubernetes, `mxgraph.networks.*` for generic topology, `mxgraph.eip.*` for messaging/integration/data pipelines, and cloud provider stencils when the provider is specified. Architecture diagrams should still be editable and understandable if specialized provider icons are unavailable.
 
 Default visual language:
 

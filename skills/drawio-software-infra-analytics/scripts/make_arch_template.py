@@ -29,6 +29,45 @@ def style(kind: str, extra: str = "") -> str:
     return base + extra
 
 
+def stencil(family: str, shape_id: str, extra: str = "") -> str:
+    return f"shape=mxgraph.{family}.{shape_id};whiteSpace=wrap;html=1;" + extra
+
+
+NETWORKS = {
+    "cloud": stencil("networks", "cloud", "aspect=fixed;verticalLabelPosition=bottom;verticalAlign=top;align=center;"),
+    "firewall": stencil("networks", "firewall", "aspect=fixed;verticalLabelPosition=bottom;verticalAlign=top;align=center;"),
+    "load_balancer": stencil("networks", "load_balancer", "aspect=fixed;verticalLabelPosition=bottom;verticalAlign=top;align=center;"),
+    "server": stencil("networks", "server", "aspect=fixed;verticalLabelPosition=bottom;verticalAlign=top;align=center;"),
+    "storage": stencil("networks", "storage", "aspect=fixed;verticalLabelPosition=bottom;verticalAlign=top;align=center;"),
+    "users": stencil("networks", "users", "aspect=fixed;verticalLabelPosition=bottom;verticalAlign=top;align=center;"),
+    "web_server": stencil("networks", "web_server", "aspect=fixed;verticalLabelPosition=bottom;verticalAlign=top;align=center;"),
+}
+
+
+K8S = {
+    "ing": stencil("kubernetes", "ing", "aspect=fixed;verticalLabelPosition=bottom;verticalAlign=top;align=center;"),
+    "svc": stencil("kubernetes", "svc", "aspect=fixed;verticalLabelPosition=bottom;verticalAlign=top;align=center;"),
+    "deploy": stencil("kubernetes", "deploy", "aspect=fixed;verticalLabelPosition=bottom;verticalAlign=top;align=center;"),
+    "pod": stencil("kubernetes", "pod", "aspect=fixed;verticalLabelPosition=bottom;verticalAlign=top;align=center;"),
+    "cm": stencil("kubernetes", "cm", "aspect=fixed;verticalLabelPosition=bottom;verticalAlign=top;align=center;"),
+    "secret": stencil("kubernetes", "secret", "aspect=fixed;verticalLabelPosition=bottom;verticalAlign=top;align=center;"),
+    "pvc": stencil("kubernetes", "pvc", "aspect=fixed;verticalLabelPosition=bottom;verticalAlign=top;align=center;"),
+    "ns": stencil("kubernetes", "ns", "aspect=fixed;verticalLabelPosition=bottom;verticalAlign=top;align=center;"),
+}
+
+
+EIP = {
+    "channel_adapter": stencil("eip", "channel_adapter", "aspect=fixed;verticalLabelPosition=bottom;verticalAlign=top;align=center;"),
+    "message_store": stencil("eip", "message_store", "aspect=fixed;verticalLabelPosition=bottom;verticalAlign=top;align=center;"),
+    "message_translator": stencil("eip", "message_translator", "aspect=fixed;verticalLabelPosition=bottom;verticalAlign=top;align=center;"),
+    "content_filter": stencil("eip", "content_filter", "aspect=fixed;verticalLabelPosition=bottom;verticalAlign=top;align=center;"),
+    "wire_tap": stencil("eip", "wire_tap", "aspect=fixed;verticalLabelPosition=bottom;verticalAlign=top;align=center;"),
+    "message": stencil("eip", "message_1", "aspect=fixed;verticalLabelPosition=bottom;verticalAlign=top;align=center;"),
+    "service_activator": stencil("eip", "service_activator", "aspect=fixed;verticalLabelPosition=bottom;verticalAlign=top;align=center;"),
+    "process_manager": stencil("eip", "process_manager", "aspect=fixed;verticalLabelPosition=bottom;verticalAlign=top;align=center;"),
+}
+
+
 def graph(title: str, width: int = 1600, height: int = 1000) -> tuple[ET.Element, ET.Element]:
     mxfile = ET.Element(
         "mxfile",
@@ -181,16 +220,16 @@ def build_deployment_topology(name: str) -> ET.Element:
     boundary(root, "edge", "Edge / DMZ", 320, 120, 260, 720)
     boundary(root, "private", "Private Application Zone", 630, 120, 500, 720)
     boundary(root, "datazone", "Data Zone", 1180, 120, 340, 720)
-    vertex(root, "users", "Users / Partners", 90, 330, 140, 80, style("actor", "shape=umlActor;fontStyle=1;"))
-    vertex(root, "dns", "DNS / CDN", 365, 220, 170, 70, style("app"))
-    vertex(root, "waf", "WAF / Firewall", 365, 340, 170, 70, style("security", "fontStyle=1;"))
-    vertex(root, "lb", "Load Balancer", 365, 460, 170, 70, style("service"))
-    vertex(root, "app1", "App Service A", 700, 270, 170, 75, style("service"))
-    vertex(root, "app2", "App Service B", 920, 270, 170, 75, style("service"))
-    vertex(root, "worker", "Worker / Job", 810, 430, 170, 75, style("service"))
+    vertex(root, "users", "Users / Partners", 90, 330, 110, 120, NETWORKS["users"])
+    vertex(root, "dns", "DNS / CDN", 390, 210, 120, 80, NETWORKS["cloud"])
+    vertex(root, "waf", "WAF / Firewall", 390, 330, 120, 120, NETWORKS["firewall"])
+    vertex(root, "lb", "Load Balancer", 380, 500, 150, 45, NETWORKS["load_balancer"])
+    vertex(root, "app1", "App Service A", 720, 260, 120, 130, NETWORKS["server"])
+    vertex(root, "app2", "App Service B", 950, 260, 120, 130, NETWORKS["server"])
+    vertex(root, "worker", "Worker / Job", 835, 430, 120, 130, NETWORKS["server"])
     vertex(root, "queue", "Queue / Stream", 810, 590, 170, 75, style("event", "shape=hexagon;perimeter=hexagonPerimeter2;"))
     vertex(root, "db", "Primary DB", 1240, 280, 170, 90, "shape=cylinder;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#E1D5E7;strokeColor=#9673A6;")
-    vertex(root, "obj", "Object Storage", 1240, 450, 170, 80, style("data"))
+    vertex(root, "obj", "Object Storage", 1255, 440, 130, 120, NETWORKS["storage"])
     vertex(root, "obs", "Logs / Metrics / Traces", 1240, 610, 190, 80, style("ops"))
     for i, pair in enumerate([("users", "dns"), ("dns", "waf"), ("waf", "lb"), ("lb", "app1"), ("lb", "app2"), ("app1", "db"), ("app2", "db"), ("app1", "queue"), ("queue", "worker"), ("worker", "obj")]):
         edge(root, f"e{i}", pair[0], pair[1])
@@ -206,14 +245,14 @@ def build_cloud_topology(name: str) -> ET.Element:
     boundary(root, "public", "Public subnet", 300, 190, 330, 570)
     boundary(root, "private", "Private subnet", 680, 190, 360, 570)
     boundary(root, "data", "Data subnet / managed services", 1090, 190, 360, 570)
-    vertex(root, "internet", "Internet users", 50, 390, 140, 80, style("actor", "shape=umlActor;fontStyle=1;"))
-    vertex(root, "edge", "DNS / CDN / WAF", 365, 270, 190, 80, style("security", "fontStyle=1;"))
-    vertex(root, "gateway", "API Gateway / LB", 365, 420, 190, 80, style("service"))
-    vertex(root, "compute", "Compute<br>containers / functions / VMs", 760, 270, 190, 90, style("service", "fontStyle=1;"))
+    vertex(root, "internet", "Internet users", 70, 370, 110, 120, NETWORKS["users"])
+    vertex(root, "edge", "DNS / CDN / WAF", 400, 250, 130, 120, NETWORKS["cloud"])
+    vertex(root, "gateway", "API Gateway / LB", 385, 435, 160, 45, NETWORKS["load_balancer"])
+    vertex(root, "compute", "Compute<br>containers / functions / VMs", 795, 250, 125, 130, NETWORKS["server"])
     vertex(root, "k8s", "Kubernetes / App Platform", 760, 440, 190, 90, style("app"))
     vertex(root, "events", "Event bus / Queue", 760, 610, 190, 80, style("event", "shape=hexagon;perimeter=hexagonPerimeter2;"))
     vertex(root, "db", "Managed DB", 1180, 270, 180, 90, "shape=cylinder;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#E1D5E7;strokeColor=#9673A6;")
-    vertex(root, "lake", "Object Storage / Lake", 1180, 440, 180, 80, style("data"))
+    vertex(root, "lake", "Object Storage / Lake", 1205, 430, 130, 120, NETWORKS["storage"])
     vertex(root, "obs", "Monitoring / SIEM", 1180, 610, 180, 80, style("ops"))
     for i, pair in enumerate([("internet", "edge"), ("edge", "gateway"), ("gateway", "compute"), ("gateway", "k8s"), ("compute", "db"), ("k8s", "db"), ("compute", "events"), ("events", "lake")]):
         edge(root, f"e{i}", pair[0], pair[1])
@@ -228,13 +267,13 @@ def build_kubernetes(name: str) -> ET.Element:
     boundary(root, "cluster", "Kubernetes cluster", 230, 110, 980, 720)
     boundary(root, "ns", "Namespace: application", 300, 190, 840, 520)
     vertex(root, "user", "Client", 60, 360, 130, 70, style("actor", "shape=umlActor;fontStyle=1;"))
-    vertex(root, "ingress", "Ingress Controller", 350, 260, 180, 70, style("service"))
-    vertex(root, "svc", "Service", 590, 260, 150, 70, style("service"))
-    vertex(root, "deploy", "Deployment", 820, 230, 200, 70, style("app", "fontStyle=1;"))
-    vertex(root, "pods", "Pods<br>replicas: n", 820, 340, 200, 90, style("app"))
-    vertex(root, "config", "ConfigMap", 360, 520, 160, 65, style("neutral"))
-    vertex(root, "secret", "Secret", 560, 520, 160, 65, style("security"))
-    vertex(root, "pvc", "PVC / PV", 820, 520, 180, 70, style("data"))
+    vertex(root, "ingress", "Ingress Controller", 385, 245, 90, 100, K8S["ing"])
+    vertex(root, "svc", "Service", 620, 245, 90, 100, K8S["svc"])
+    vertex(root, "deploy", "Deployment", 875, 215, 95, 105, K8S["deploy"])
+    vertex(root, "pods", "Pods<br>replicas: n", 875, 350, 95, 105, K8S["pod"])
+    vertex(root, "config", "ConfigMap", 390, 505, 80, 90, K8S["cm"])
+    vertex(root, "secret", "Secret", 600, 505, 80, 90, K8S["secret"])
+    vertex(root, "pvc", "PVC / PV", 870, 510, 90, 85, K8S["pvc"])
     vertex(root, "db", "External DB", 1260, 350, 170, 90, "shape=cylinder;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#E1D5E7;strokeColor=#9673A6;")
     vertex(root, "obs", "Prometheus / Logs", 1260, 540, 180, 80, style("ops"))
     for i, pair in enumerate([("user", "ingress"), ("ingress", "svc"), ("svc", "pods"), ("deploy", "pods"), ("pods", "db")]):
@@ -262,12 +301,12 @@ def build_data_platform(name: str) -> ET.Element:
     vertex(root, "apps", "Apps / SaaS / APIs", 90, 230, 150, 70, style("app"))
     vertex(root, "opsdb", "Operational DBs", 90, 370, 150, 80, "shape=cylinder;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#E1D5E7;strokeColor=#9673A6;")
     vertex(root, "files", "Files / IoT / Logs", 90, 520, 150, 70, style("data"))
-    vertex(root, "batch", "Batch / ELT", 330, 260, 150, 70, style("service"))
-    vertex(root, "cdc", "CDC / Streaming", 330, 430, 150, 70, style("event", "shape=hexagon;perimeter=hexagonPerimeter2;"))
+    vertex(root, "batch", "Batch / ELT", 345, 240, 120, 95, EIP["channel_adapter"])
+    vertex(root, "cdc", "CDC / Streaming", 345, 410, 120, 95, EIP["message"])
     vertex(root, "raw", "Raw / Landing", 575, 230, 150, 80, style("data"))
     vertex(root, "lake", "Data Lake", 575, 380, 150, 80, style("data"))
-    vertex(root, "quality", "Data Quality", 830, 260, 150, 70, style("ops"))
-    vertex(root, "transform", "Transform / Model", 830, 430, 150, 70, style("service"))
+    vertex(root, "quality", "Data Quality", 840, 240, 120, 95, EIP["content_filter"])
+    vertex(root, "transform", "Transform / Model", 840, 410, 120, 95, EIP["message_translator"])
     vertex(root, "warehouse", "Warehouse / Lakehouse", 1090, 260, 160, 90, "shape=cylinder;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#E1D5E7;strokeColor=#9673A6;")
     vertex(root, "semantic", "Semantic Layer", 1090, 450, 160, 70, style("data"))
     vertex(root, "bi", "BI Dashboards", 1350, 230, 160, 70, style("app"))
@@ -302,6 +341,16 @@ def build_data_pipeline(name: str) -> ET.Element:
         cell_style = style(kind, "fontStyle=1;" if kind in {"event", "ops"} else "")
         if kind == "data" and sid in {"mart", "sink"}:
             cell_style = "shape=cylinder;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#E1D5E7;strokeColor=#9673A6;"
+        elif sid == "orchestrator":
+            cell_style = EIP["process_manager"]
+        elif sid == "extract":
+            cell_style = EIP["channel_adapter"]
+        elif sid in {"quality", "dq"}:
+            cell_style = EIP["content_filter"]
+        elif sid in {"stream_src", "broker"}:
+            cell_style = EIP["message"]
+        elif sid == "process":
+            cell_style = EIP["message_translator"]
         vertex(root, sid, label, x, y, 170, 75, cell_style)
     for i, pair in enumerate([("batch_src", "orchestrator"), ("orchestrator", "extract"), ("extract", "quality"), ("quality", "mart"), ("stream_src", "broker"), ("broker", "process"), ("process", "dq"), ("dq", "sink")]):
         edge(root, f"e{i}", pair[0], pair[1], "", "async" if pair[0] in {"stream_src", "broker", "process"} else "sync")
@@ -315,12 +364,12 @@ def build_lakehouse(name: str) -> ET.Element:
     mxfile, root = graph(name, 1600, 900)
     title(root, name, 1600)
     vertex(root, "sources", "Data sources<br>apps, DBs, SaaS, files", 70, 360, 180, 90, style("app"))
-    vertex(root, "ingest", "Ingestion<br>batch / CDC / stream", 310, 360, 190, 90, style("event", "shape=hexagon;perimeter=hexagonPerimeter2;"))
+    vertex(root, "ingest", "Ingestion<br>batch / CDC / stream", 335, 335, 140, 120, EIP["channel_adapter"])
     zones = [("bronze", "Bronze<br>raw immutable", 580, "#F8CECC", "#B85450"), ("silver", "Silver<br>cleaned / conformed", 820, "#DAE8FC", "#6C8EBF"), ("gold", "Gold<br>business-ready marts", 1060, "#D5E8D4", "#82B366")]
     for zid, label, x, fill, stroke in zones:
         vertex(root, zid, label, x, 300, 180, 180, f"rounded=1;whiteSpace=wrap;html=1;fillColor={fill};strokeColor={stroke};fontStyle=1;fontSize=15;")
     vertex(root, "catalog", "Catalog / Governance / Security", 600, 560, 620, 80, style("security", "fontStyle=1;"))
-    vertex(root, "compute", "Compute engines<br>SQL / Spark / notebooks", 720, 160, 360, 80, style("service"))
+    vertex(root, "compute", "Compute engines<br>SQL / Spark / notebooks", 720, 160, 360, 80, EIP["message_translator"])
     vertex(root, "consumers", "BI / ML / APIs / Reverse ETL", 1310, 350, 210, 100, style("app", "fontStyle=1;"))
     for i, pair in enumerate([("sources", "ingest"), ("ingest", "bronze"), ("bronze", "silver"), ("silver", "gold"), ("gold", "consumers")]):
         edge(root, f"e{i}", pair[0], pair[1], "")
@@ -338,8 +387,8 @@ def build_mlops(name: str) -> ET.Element:
     boundary(root, "monitor", "Monitoring and feedback", 1060, 150, 470, 640)
     vertex(root, "data", "Data sources", 130, 250, 150, 75, style("data"))
     vertex(root, "features", "Feature engineering<br>Feature Store", 350, 235, 180, 105, style("data", "fontStyle=1;"))
-    vertex(root, "training", "Training pipeline", 610, 250, 170, 75, style("service"))
-    vertex(root, "experiments", "Experiment tracking", 810, 250, 150, 75, style("ops"))
+    vertex(root, "training", "Training pipeline", 625, 235, 140, 105, EIP["process_manager"])
+    vertex(root, "experiments", "Experiment tracking", 825, 235, 120, 105, EIP["wire_tap"])
     vertex(root, "registry", "Model Registry", 610, 600, 180, 80, style("data", "fontStyle=1;"))
     vertex(root, "deploy", "Deployment<br>batch or real-time", 350, 590, 180, 100, style("service"))
     vertex(root, "app", "ML/AI Application", 130, 600, 160, 80, style("app"))
