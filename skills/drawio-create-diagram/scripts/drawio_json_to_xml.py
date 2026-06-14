@@ -16,6 +16,18 @@ from typing import Any
 from xml.etree import ElementTree as ET
 
 
+def native_stencil(family: str, shape_id: str, extra: str = "") -> str:
+    return f"shape=mxgraph.{family}.{shape_id};whiteSpace=wrap;html=1;{extra}"
+
+
+def icon_stencil(family: str, shape_id: str, extra: str = "") -> str:
+    return native_stencil(
+        family,
+        shape_id,
+        "aspect=fixed;verticalLabelPosition=bottom;verticalAlign=top;align=center;" + extra,
+    )
+
+
 STYLE_PRESETS = {
     "process": "rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF4FE;strokeColor=#1565C0;fontColor=#0B1F33;",
     "terminator": "rounded=1;arcSize=50;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;fontColor=#173B1A;",
@@ -47,6 +59,47 @@ STYLE_PRESETS = {
     "security": "rounded=1;whiteSpace=wrap;html=1;fillColor=#F8CECC;strokeColor=#B85450;fontColor=#4A1D1B;fontStyle=1;",
     "observability": "rounded=1;whiteSpace=wrap;html=1;fillColor=#FFE6CC;strokeColor=#D79B00;fontColor=#3B2500;",
     "external": "rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#666666;fontColor=#1F2933;",
+    "flowchart-process": native_stencil("flowchart", "process"),
+    "flowchart-decision": native_stencil("flowchart", "decision"),
+    "flowchart-terminator": native_stencil("flowchart", "terminator"),
+    "flowchart-data": native_stencil("flowchart", "data"),
+    "flowchart-document": native_stencil("flowchart", "document"),
+    "flowchart-database": native_stencil("flowchart", "database"),
+    "vsm-mrp-erp": icon_stencil("lean_mapping", "mrp_erp"),
+    "vsm-kanban-post": icon_stencil("lean_mapping", "kanban_post"),
+    "vsm-kaizen": icon_stencil("lean_mapping", "kaizen_lightening_burst"),
+    "vsm-operator": icon_stencil("lean_mapping", "operator"),
+    "vsm-quality-problem": icon_stencil("lean_mapping", "quality_problem"),
+    "vsm-electronic-info-flow": native_stencil("lean_mapping", "electronic_info_flow", "aspect=fixed;"),
+    "vsm-manual-info-flow": native_stencil("lean_mapping", "manual_info_flow", "aspect=fixed;"),
+    "vsm-forklift": native_stencil("lean_mapping", "move_by_forklift", "aspect=fixed;"),
+    "vsm-finished-goods": native_stencil("lean_mapping", "finished_goods_to_customer", "aspect=fixed;"),
+    "k8s-ingress": icon_stencil("kubernetes", "ing"),
+    "k8s-service": icon_stencil("kubernetes", "svc"),
+    "k8s-deployment": icon_stencil("kubernetes", "deploy"),
+    "k8s-pod": icon_stencil("kubernetes", "pod"),
+    "k8s-configmap": icon_stencil("kubernetes", "cm"),
+    "k8s-secret": icon_stencil("kubernetes", "secret"),
+    "k8s-pvc": icon_stencil("kubernetes", "pvc"),
+    "k8s-namespace": icon_stencil("kubernetes", "ns"),
+    "k8s-node": icon_stencil("kubernetes", "node"),
+    "network-cloud": icon_stencil("networks", "cloud"),
+    "network-firewall": icon_stencil("networks", "firewall"),
+    "network-load-balancer": icon_stencil("networks", "load_balancer"),
+    "network-server": icon_stencil("networks", "server"),
+    "network-web-server": icon_stencil("networks", "web_server"),
+    "network-storage": icon_stencil("networks", "storage"),
+    "network-users": icon_stencil("networks", "users"),
+    "network-router": icon_stencil("networks", "router"),
+    "network-switch": icon_stencil("networks", "switch"),
+    "eip-channel-adapter": icon_stencil("eip", "channel_adapter"),
+    "eip-message": icon_stencil("eip", "message_1"),
+    "eip-message-store": icon_stencil("eip", "message_store"),
+    "eip-transformer": icon_stencil("eip", "message_translator"),
+    "eip-content-filter": icon_stencil("eip", "content_filter"),
+    "eip-wire-tap": icon_stencil("eip", "wire_tap"),
+    "eip-service-activator": icon_stencil("eip", "service_activator"),
+    "eip-process-manager": icon_stencil("eip", "process_manager"),
 }
 
 EDGE_PRESETS = {

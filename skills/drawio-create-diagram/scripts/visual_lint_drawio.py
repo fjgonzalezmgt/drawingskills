@@ -51,6 +51,104 @@ class Box:
         return self.y + self.h
 
 
+@dataclass
+class Edge:
+    cell_id: str
+    label: str
+    style: str
+    source: str
+    target: str
+
+
+KNOWN_STENCILS = {
+    "lean_mapping": {
+        "finished_goods_to_customer",
+        "go_see_production_scheduling",
+        "kaizen_lightening_burst",
+        "kanban_post",
+        "load_leveling",
+        "move_by_forklift",
+        "mrp_erp",
+        "operator",
+        "quality_problem",
+        "verbal",
+        "airplane_7",
+        "manual_info_flow",
+        "electronic_info_flow",
+    },
+    "flowchart": {
+        "process",
+        "decision",
+        "terminator",
+        "data",
+        "document",
+        "database",
+        "predefined_process",
+        "manual_operation",
+        "manual_input",
+        "on-page_reference",
+        "off-page_reference",
+    },
+    "kubernetes": {
+        "ing",
+        "svc",
+        "deploy",
+        "pod",
+        "cm",
+        "secret",
+        "pvc",
+        "pv",
+        "ns",
+        "node",
+        "job",
+        "cronjob",
+        "sts",
+        "rs",
+        "netpol",
+    },
+    "networks": {
+        "cloud",
+        "firewall",
+        "load_balancer",
+        "server",
+        "web_server",
+        "storage",
+        "users",
+        "router",
+        "switch",
+        "wireless_hub",
+        "desktop_pc",
+        "laptop",
+    },
+    "eip": {
+        "channel_adapter",
+        "message_1",
+        "message_store",
+        "message_translator",
+        "content_filter",
+        "wire_tap",
+        "service_activator",
+        "process_manager",
+        "aggregator",
+        "splitter",
+        "content_based_router",
+    },
+}
+
+ICON_STENCIL_FAMILIES = {"lean_mapping", "kubernetes", "networks", "eip"}
+COMMON_UNVERIFIED_FAMILIES = {
+    "aws4",
+    "azure",
+    "gcp",
+    "cisco",
+    "bpmn",
+    "uml",
+    "er",
+    "pid",
+    "mockup",
+}
+
+
 def local_name(tag: str) -> str:
     return tag.rsplit("}", 1)[-1]
 
@@ -118,6 +216,35 @@ def intersection(a: Box, b: Box) -> float:
     return (x2 - x1) * (y2 - y1)
 
 
+def stencil_ref(style: str) -> tuple[str, str] | None:
+    match = re.search(r"(?:^|;)shape=mxgraph\.([A-Za-z0-9_]+)\.([A-Za-z0-9_.-]+)", style)
+    if not match:
+        return None
+    return match.group(1), match.group(2)
+
+
+def normalize_family(value: str) -> str:
+    value = value.strip()
+    if value.startswith("mxgraph."):
+        value = value.removeprefix("mxgraph.")
+    return value.split(".", 1)[0]
+
+
+def parse_required_families(values: list[str]) -> set[str]:
+    families: set[str] = set()
+    for value in values:
+        for part in value.split(","):
+            if part.strip():
+                families.add(normalize_family(part))
+    return families
+
+
+def on_grid(value: float, step: float, tolerance: float = 0.01) -> bool:
+    if step <= 0:
+        return True
+    return abs(value - round(value / step) * step) <= tolerance
+
+
 def extract_boxes(model: ET.Element) -> list[Box]:
     root = next((child for child in model if local_name(child.tag) == "root"), None)
     if root is None:
@@ -144,8 +271,32 @@ def extract_boxes(model: ET.Element) -> list[Box]:
     return boxes
 
 
+def extract_edges(model: ET.Element) -> list[Edge]:
+    root = next((child for child in model if local_name(child.tag) == "root"), None)
+    if root is None:
+        return []
+    edges: list[Edge] = []
+    for cell in root:
+        if local_name(cell.tag) != "mxCell" or cell.get("edge") != "1":
+            continue
+        edges.append(
+            Edge(
+                cell_id=cell.get("id", ""),
+                label=clean_label(cell.get("value", "")),
+                style=cell.get("style", ""),
+                source=cell.get("source", ""),
+                target=cell.get("target", ""),
+            )
+        )
+    return edges
+
+
 def lint_label(path: str, page: int, box: Box, issues: list[Issue]) -> None:
-    if not box.label or is_native_icon(box):
+    if not box.label:
+        return
+    if is_native_icon(box):
+        if len(box.label) > 28 and "verticalLabelPosition=bottom" not in box.style:
+            issues.append(Issue("warn", path, page, box.cell_id, "native stencil label is long without bottom label positioning"))
         return
     size = font_size(box.style)
     usable_w = max(1.0, box.w - 16.0)
@@ -182,11 +333,86 @@ def lint_label(path: str, page: int, box: Box, issues: list[Issue]) -> None:
         )
 
 
-def lint_model(path: Path, page: int, model: ET.Element) -> list[Issue]:
+def lint_stencils(path: Path, page: int, boxes: list[Box], required_families: set[str], issues: list[Issue]) -> None:
+    seen_families: dict[str, str] = {}
+    reported_unverified: set[str] = set()
+    for box in boxes:
+        ref = stencil_ref(box.style)
+        if not ref:
+            continue
+        family, shape_id = ref
+        seen_families.setdefault(family, box.cell_id)
+        if family in KNOWN_STENCILS and shape_id not in KNOWN_STENCILS[family]:
+            issues.append(Issue("warn", str(path), page, box.cell_id, f"unrecognized mxgraph.{family} stencil id: {shape_id}"))
+        elif family not in KNOWN_STENCILS and family not in COMMON_UNVERIFIED_FAMILIES and family not in reported_unverified:
+            reported_unverified.add(family)
+            issues.append(Issue("info", str(path), page, box.cell_id, f"native stencil family is not in the local map: mxgraph.{family}"))
+        if family in ICON_STENCIL_FAMILIES and "aspect=fixed" not in box.style:
+            issues.append(Issue("warn", str(path), page, box.cell_id, "native icon stencil should usually include aspect=fixed"))
+
+    missing = sorted(required_families - set(seen_families))
+    for family in missing:
+        issues.append(Issue("error", str(path), page, "", f"required native stencil family not used: mxgraph.{family}"))
+
+
+def lint_edges(path: Path, page: int, edges: list[Edge], issues: list[Issue]) -> None:
+    for edge in edges:
+        if edge.source and edge.target:
+            if edge.source == edge.target:
+                issues.append(Issue("warn", str(path), page, edge.cell_id, "edge source and target are the same"))
+            if "edgeStyle=orthogonalEdgeStyle" not in edge.style and "elbowEdgeStyle" not in edge.style:
+                issues.append(Issue("warn", str(path), page, edge.cell_id, "source/target edge should use an orthogonal or elbow edge style"))
+        if edge.label and len(edge.label) > 42:
+            issues.append(Issue("warn", str(path), page, edge.cell_id, "edge label is long; shorten it or move detail into nearby text"))
+        if "html=1" not in edge.style:
+            issues.append(Issue("warn", str(path), page, edge.cell_id, "edge style should include html=1 for consistent labels"))
+
+
+def lint_canvas_use(path: Path, page: int, page_w: float, page_h: float, boxes: list[Box], issues: list[Issue]) -> None:
+    visible = [box for box in boxes if not is_text_only(box)]
+    if len(visible) < 3:
+        return
+    min_x = min(box.x for box in visible)
+    min_y = min(box.y for box in visible)
+    max_x = max(box.right for box in visible)
+    max_y = max(box.bottom for box in visible)
+    content_w = max_x - min_x
+    content_h = max_y - min_y
+    if content_w < page_w * 0.45 and content_h < page_h * 0.45:
+        issues.append(
+            Issue(
+                "info",
+                str(path),
+                page,
+                "",
+                f"diagram uses a small part of the page ({content_w:g}x{content_h:g} of {page_w:g}x{page_h:g})",
+            )
+        )
+    if min_x < 16 or min_y < 16:
+        issues.append(Issue("warn", str(path), page, "", "visible content is very close to the page edge"))
+
+
+def lint_grid(path: Path, page: int, boxes: list[Box], step: float, issues: list[Issue]) -> None:
+    for box in boxes:
+        values = {"x": box.x, "y": box.y, "width": box.w, "height": box.h}
+        off_grid = [name for name, value in values.items() if not on_grid(value, step)]
+        if off_grid:
+            issues.append(Issue("warn", str(path), page, box.cell_id, f"geometry is off the {step:g}px grid: {', '.join(off_grid)}"))
+
+
+def lint_model(
+    path: Path,
+    page: int,
+    model: ET.Element,
+    required_families: set[str],
+    check_grid: bool,
+    grid_step: float,
+) -> list[Issue]:
     issues: list[Issue] = []
     page_w = number(model.get("pageWidth"), 850.0)
     page_h = number(model.get("pageHeight"), 1100.0)
     boxes = extract_boxes(model)
+    edges = extract_edges(model)
 
     for box in boxes:
         if box.w <= 0 or box.h <= 0:
@@ -205,6 +431,12 @@ def lint_model(path: Path, page: int, model: ET.Element) -> list[Issue]:
                 )
             )
         lint_label(str(path), page, box, issues)
+
+    lint_stencils(path, page, boxes, required_families, issues)
+    lint_edges(path, page, edges, issues)
+    lint_canvas_use(path, page, page_w, page_h, boxes, issues)
+    if check_grid:
+        lint_grid(path, page, boxes, grid_step, issues)
 
     visible = [box for box in boxes if not is_text_only(box)]
     for index, a in enumerate(visible):
@@ -225,14 +457,14 @@ def lint_model(path: Path, page: int, model: ET.Element) -> list[Issue]:
     return issues
 
 
-def lint_file(path: Path) -> list[Issue]:
+def lint_file(path: Path, required_families: set[str], check_grid: bool, grid_step: float) -> list[Issue]:
     root = ET.parse(path).getroot()
     models = iter_graph_models(root)
     if not models:
         return [Issue("error", str(path), 0, "", "root must be <mxfile> or <mxGraphModel>")]
     issues: list[Issue] = []
     for page, model in enumerate(models, start=1):
-        issues.extend(lint_model(path, page, model))
+        issues.extend(lint_model(path, page, model, required_families, check_grid, grid_step))
     return issues
 
 
@@ -241,11 +473,21 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("paths", nargs="+", help="draw.io XML files to lint visually")
     parser.add_argument("--json", action="store_true", help="Emit JSON issues")
     parser.add_argument("--strict", action="store_true", help="Exit non-zero on warnings as well as errors")
+    parser.add_argument(
+        "--require-stencil-family",
+        action="append",
+        default=[],
+        metavar="FAMILY",
+        help="Require at least one mxgraph stencil family, e.g. lean_mapping, kubernetes, networks, eip. Repeat or comma-separate.",
+    )
+    parser.add_argument("--check-grid", action="store_true", help="Warn when vertex geometry is not aligned to the grid")
+    parser.add_argument("--grid-step", type=float, default=5.0, help="Grid size for --check-grid, default 5")
     args = parser.parse_args(argv)
 
+    required_families = parse_required_families(args.require_stencil_family)
     issues: list[Issue] = []
     for value in args.paths:
-        issues.extend(lint_file(Path(value)))
+        issues.extend(lint_file(Path(value), required_families, args.check_grid, args.grid_step))
 
     if args.json:
         print(json.dumps([asdict(issue) for issue in issues], indent=2))

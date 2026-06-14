@@ -121,3 +121,6 @@ The helper script can generate this URL with `--print-url`.
 - Edges reference existing source/target ids, unless they use explicit `sourcePoint` and `targetPoint`.
 - Labels with `<`, `>`, `&`, or quotes are XML-escaped.
 - No XML comments are included in generated diagram XML.
+- Domain-specific diagrams use expected native stencil families when available; verify with `visual_lint_drawio.py --strict --require-stencil-family <family>`.
+- Native icon stencils preserve aspect ratio with `aspect=fixed;` unless the stencil is intentionally stretched, such as a compact information-flow symbol.
+- Source/target edges use orthogonal or elbow routing unless a sequence, timeline, or freeform sketch intentionally uses floating endpoints.

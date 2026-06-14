@@ -48,6 +48,8 @@ Use `xml` for editable shapes, groups, fragments, and templates. The value is an
 
 The helper script writes the JSON as XML text so escaping is handled automatically.
 
+Keep `w` and `h` aligned with the fragment's visible geometry. Mismatched dimensions can crop native icons in the sidebar or leave thumbnails with large blank margins. Generated libraries should reject XML fragments that do not parse.
+
 ## Data Entries
 
 Use `data` for image entries:

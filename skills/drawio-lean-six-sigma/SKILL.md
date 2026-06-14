@@ -13,6 +13,8 @@ For fast templates, run `scripts/make_lss_template.py`. The VSM template must us
 
 Read `references/lean-six-sigma-patterns.md` before creating a diagram that needs domain-specific structure, symbols, metrics, or layout decisions.
 
+Use native Lean Mapping stencils for VSM symbols and run the base visual lint with `--require-stencil-family lean_mapping` for VSM deliverables. Use editable core shapes for SIPOC, A3, fishbone text blocks, process cards, data boxes, timelines, and control-plan/FMEA cells.
+
 ## Diagram Selection
 
 Choose the output by intent:
@@ -41,7 +43,8 @@ Validate generated files with the base skill if present:
 
 ```bash
 python ../drawio-create-diagram/scripts/validate_drawio.py sipoc.drawio
-python ../drawio-create-diagram/scripts/visual_lint_drawio.py sipoc.drawio
+python ../drawio-create-diagram/scripts/visual_lint_drawio.py --strict sipoc.drawio
+python ../drawio-create-diagram/scripts/visual_lint_drawio.py --strict --require-stencil-family lean_mapping vsm.drawio
 ```
 
 ## Visual Conventions
@@ -57,6 +60,8 @@ Default palette:
 - Neutral containers: `#F5F5F5` fill, `#666666` stroke
 
 Prefer native draw.io Lean Mapping stencils for VSM-specific symbols: MRP/ERP, electronic/manual information flow, Kanban Post, Kaizen burst, Operator, Quality Problem, Load Leveling, Move by Forklift, Finished Goods to Customer, Verbal, and Airplane. Use core editable shapes only for process boxes, data boxes, inventory triangles, and timelines because those text-heavy VSM elements are not provided as complete native stencils.
+
+For visual polish, keep process streams on a clear horizontal baseline, align data boxes directly under their process boxes, reserve red only for waste/risk/problem signals, and keep VSM native icons large enough that their silhouettes remain recognizable after export.
 
 ## Quality Bar
 

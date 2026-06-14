@@ -13,6 +13,8 @@ For fast editable templates, run `scripts/make_arch_template.py`. For low-level 
 
 Read `references/software-infra-analytics-patterns.md` before creating diagrams that need correct architecture layering, notation choices, or domain-specific elements.
 
+Use the base skill's native stencil aliases or raw `shape=mxgraph.*` styles when a matching family exists. Use `--require-stencil-family kubernetes` for Kubernetes diagrams, `--require-stencil-family networks` for vendor-neutral topology/network diagrams, and `--require-stencil-family eip` for integration, messaging, orchestration, and data pipeline diagrams. Do not require a native family for C4 or sequence diagrams.
+
 ## Diagram Selection
 
 Choose the diagram by the user's intent:
@@ -43,7 +45,8 @@ Validate generated files with the base skill:
 
 ```bash
 python ../drawio-create-diagram/scripts/validate_drawio.py data-platform.drawio
-python ../drawio-create-diagram/scripts/visual_lint_drawio.py data-platform.drawio
+python ../drawio-create-diagram/scripts/visual_lint_drawio.py --strict data-platform.drawio
+python ../drawio-create-diagram/scripts/visual_lint_drawio.py --strict --require-stencil-family kubernetes kubernetes.drawio
 ```
 
 ## Visual Conventions
@@ -60,6 +63,8 @@ Default visual language:
 - Network/environment boundaries: light gray containers.
 - Data/async flow: dashed lines.
 - Runtime/request flow: solid arrows.
+
+Keep native icon labels short and placed below icons. Use containers for environment, trust, network, or data-zone boundaries; do not turn every service into a vendor icon if that makes ownership, state, or flow harder to read.
 
 ## Quality Bar
 

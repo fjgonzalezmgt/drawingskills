@@ -9,7 +9,7 @@ description: Create, edit, repair, and validate native draw.io/diagrams.net diag
 
 Create uncompressed XML first. Prefer a full `<mxfile>` when saving a `.drawio` file, and a bare `<mxGraphModel>` only for fragments that will be pasted or imported.
 
-Use `scripts/drawio_json_to_xml.py` for routine node-and-edge diagrams. Use `scripts/validate_drawio.py` and `scripts/visual_lint_drawio.py` before delivering any `.drawio` or `.xml` file.
+Use `scripts/drawio_json_to_xml.py` for routine node-and-edge diagrams. It includes portable core shapes plus native stencil `kind` aliases for Lean VSM, flowchart, Kubernetes, network, and EIP/integration icons. Use `scripts/validate_drawio.py` and `scripts/visual_lint_drawio.py` before delivering any `.drawio` or `.xml` file.
 
 Read `references/drawio-xml-reference.md` when the task needs exact style syntax, editor URLs, groups, layers, or source links. Read `references/drawio-stencil-map.md` before choosing shapes for a domain-specific diagram.
 
@@ -19,9 +19,10 @@ Do not deliver a generated or edited `.drawio` file until this gate is complete:
 
 1. Run `scripts/validate_drawio.py <file>`.
 2. Run `scripts/visual_lint_drawio.py --strict <file>`.
-3. If either command fails, adjust layout/XML and rerun both commands.
-4. If a browser, draw.io Desktop, or another renderer is available, inspect an exported image or editor screenshot and adjust obvious visual problems.
-5. In the final response, state the result of structural validation, visual lint, and screenshot/export review. If screenshot/export review was unavailable, say so.
+3. For diagrams that should use a native family, add `--require-stencil-family <family>` to visual lint, for example `lean_mapping`, `kubernetes`, `networks`, or `eip`.
+4. If either command fails, adjust layout/XML and rerun both commands.
+5. If a browser, draw.io Desktop, or another renderer is available, inspect an exported image or editor screenshot and adjust obvious visual problems.
+6. In the final response, state the result of structural validation, visual lint, stencil-family check when used, and screenshot/export review. If screenshot/export review was unavailable, say so.
 
 ## Workflow
 
@@ -38,6 +39,20 @@ Do not deliver a generated or edited `.drawio` file until this gate is complete:
 9. Validate the result with `scripts/validate_drawio.py`.
 10. Run `scripts/visual_lint_drawio.py` and adjust geometry until there are no errors and no important warnings.
 11. When a renderer/browser is available, visually inspect an exported PNG/SVG or editor screenshot. Check for blank canvas, clipped labels, overlapping nodes, cropped native stencils, unreadable connectors, and excessive whitespace. Adjust and repeat.
+
+## Stencil Selection Contract
+
+Before writing XML, choose the stencil contract:
+
+- **Strict native family**: use when the diagram type has a clear draw.io library, such as VSM, Kubernetes, network topology, or EIP-style pipeline. Use native `shape=mxgraph.<family>.<shape_id>` styles and run visual lint with `--require-stencil-family`.
+- **Hybrid**: use native icons for domain-specific symbols and core editable shapes for text-heavy cards, metric boxes, boundaries, timelines, and labels.
+- **Portable core shapes**: use when draw.io has no default domain stencil, when exact built-in shape ids are uncertain, or when text editability matters more than icon fidelity.
+
+Native icon stencils should usually include `aspect=fixed;` and labels below the icon with `verticalLabelPosition=bottom;verticalAlign=top;align=center;` unless the stencil itself is a flow line or compact symbol.
+
+## Visual Polish Rules
+
+Use a visible title, consistent spacing, and a page size that fits the actual content. Keep major nodes aligned to a grid, reserve light gray containers for boundaries, and route source/target connectors orthogonally. Use no more than a few semantic fill colors, keep label text short, and move dense notes into separate text boxes instead of overloading icons.
 
 ## Script Usage
 
@@ -71,6 +86,18 @@ Strict visual lint for final QA:
 python scripts/visual_lint_drawio.py --strict output.drawio
 ```
 
+Require a native stencil family when the diagram type calls for one:
+
+```bash
+python scripts/visual_lint_drawio.py --strict --require-stencil-family kubernetes output.drawio
+```
+
+Optionally check generated geometry against a grid:
+
+```bash
+python scripts/visual_lint_drawio.py --strict --check-grid --grid-step 5 output.drawio
+```
+
 ## JSON Spec Shape
 
 Use this shape for `drawio_json_to_xml.py`:
@@ -89,7 +116,15 @@ Use this shape for `drawio_json_to_xml.py`:
 }
 ```
 
-Supported node `kind` values: `process`, `terminator`, `decision`, `data`, `document`, `database`, `text`, `container`, `note`, `warning`, `success`, `actor`, `system`, `service`, `api`, `ui`, `worker`, `queue`, `event-bus`, `cache`, `object-storage`, `data-lake`, `warehouse`, `analytics`, `ml`, `cloud`, `network`, `security`, `observability`, `external`.
+Supported node `kind` values include portable shapes: `process`, `terminator`, `decision`, `data`, `document`, `database`, `text`, `container`, `note`, `warning`, `success`, `actor`, `system`, `service`, `api`, `ui`, `worker`, `queue`, `event-bus`, `cache`, `object-storage`, `data-lake`, `warehouse`, `analytics`, `ml`, `cloud`, `network`, `security`, `observability`, `external`.
+
+Native stencil aliases include:
+
+- Flowchart: `flowchart-process`, `flowchart-decision`, `flowchart-terminator`, `flowchart-data`, `flowchart-document`, `flowchart-database`
+- Lean VSM: `vsm-mrp-erp`, `vsm-kanban-post`, `vsm-kaizen`, `vsm-operator`, `vsm-quality-problem`, `vsm-electronic-info-flow`, `vsm-manual-info-flow`, `vsm-forklift`, `vsm-finished-goods`
+- Kubernetes: `k8s-ingress`, `k8s-service`, `k8s-deployment`, `k8s-pod`, `k8s-configmap`, `k8s-secret`, `k8s-pvc`, `k8s-namespace`, `k8s-node`
+- Network: `network-cloud`, `network-firewall`, `network-load-balancer`, `network-server`, `network-web-server`, `network-storage`, `network-users`, `network-router`, `network-switch`
+- EIP/integration: `eip-channel-adapter`, `eip-message`, `eip-message-store`, `eip-transformer`, `eip-content-filter`, `eip-wire-tap`, `eip-service-activator`, `eip-process-manager`
 
 Add a raw draw.io style with `style`, or append properties with `extra_style`. Use `value` and `label` interchangeably only when adapting specs; normalize to `label` before generation.
 

@@ -70,6 +70,8 @@ Native stencil use:
 
 Use core rectangles for process boxes and data boxes so the metric text remains easy to edit.
 
+QA: because VSM has a dedicated draw.io stencil family, run `visual_lint_drawio.py --strict --require-stencil-family lean_mapping` before delivery. If this fails, add the correct native VSM symbols instead of replacing them with generic icons.
+
 Data box fields:
 
 - CT: cycle time

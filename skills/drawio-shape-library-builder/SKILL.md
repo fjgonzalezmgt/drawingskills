@@ -19,8 +19,9 @@ Read `references/custom-library-format.md` for exact format rules and sharing no
 2. Use XML fragments for diagrams, grouped shapes, and reusable editable components.
 3. Use image data URIs for logos, icons, and artwork where editability is not required.
 4. Add titles and tags so entries are searchable in the sidebar.
-5. Generate `<mxlibrary>` XML and validate that it parses.
-6. If sharing via URL, host the library file and load it with `clibs=U<url-encoded-raw-url>`.
+5. Keep each entry's `w`/`h` close to the fragment's visible geometry so library previews do not crop or stretch.
+6. Generate `<mxlibrary>` XML and validate that it parses; `make_mxlibrary.py` also parses XML fragments and rejects invalid data URIs.
+7. If sharing via URL, host the library file and load it with `clibs=U<url-encoded-raw-url>`.
 
 ## Script Usage
 
@@ -81,3 +82,5 @@ Each entry must have `w`, `h`, and either `xml`, `xml_path`, `data`, or `data_pa
 Deliver the `.xml` library file. If the user needs one-click loading, also provide the `https://app.diagrams.net/?splash=0&clibs=U...` URL after the file is hosted at a raw public URL.
 
 Check licenses before bundling third-party icons or vendor logos. Prefer user-provided assets, draw.io built-in editable shapes, or original simple vector fragments.
+
+For polished reusable libraries, prefer native draw.io stencils for domain icons, use editable XML fragments for cards and templates, and avoid mixed-size previews where the sidebar thumbnail crops labels or leaves large blank margins.

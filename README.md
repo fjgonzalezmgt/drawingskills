@@ -61,7 +61,11 @@ Incluye:
 
 - `scripts/drawio_json_to_xml.py`: convierte una especificacion JSON de nodos y edges a `.drawio`.
 - `scripts/validate_drawio.py`: valida estructura basica de archivos draw.io.
+- `scripts/visual_lint_drawio.py`: revisa geometria, solapes, etiquetas, edges, uso de stencils nativas y familias requeridas.
 - `references/drawio-xml-reference.md`: notas sobre XML, estilos y librerias integradas.
+- `references/drawio-stencil-map.md`: mapa de stencils nativas y aliases JSON.
+
+`drawio_json_to_xml.py` soporta aliases de `kind` para stencils nativas, por ejemplo `k8s-pod`, `network-firewall`, `eip-channel-adapter`, `vsm-kaizen` y `flowchart-decision`.
 
 ### `drawio-lean-six-sigma`
 
@@ -155,6 +159,12 @@ Para QA final estricto:
 
 ```powershell
 python .\skills\drawio-create-diagram\scripts\visual_lint_drawio.py --strict .\examples\sample.drawio
+```
+
+Exigir una familia nativa cuando el diagrama lo requiere:
+
+```powershell
+python .\skills\drawio-create-diagram\scripts\visual_lint_drawio.py --strict --require-stencil-family kubernetes .\examples\software-infra-analytics\kubernetes.drawio
 ```
 
 Validar una skill con el validador de Codex:

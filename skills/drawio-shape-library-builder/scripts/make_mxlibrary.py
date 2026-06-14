@@ -43,6 +43,25 @@ def native_fragment(label: str, family: str, shape_id: str, w: int, h: int, extr
     return fragment(label, f"shape=mxgraph.{family}.{shape_id};whiteSpace=wrap;html=1;{extra_style}", w, h)
 
 
+def positive_int(value: object, field: str, title: str) -> int:
+    try:
+        number = int(value)
+    except (TypeError, ValueError) as exc:
+        raise ValueError(f"entry {title!r} has invalid {field}: {value!r}") from exc
+    if number <= 0:
+        raise ValueError(f"entry {title!r} has non-positive {field}: {number}")
+    return number
+
+
+def validate_xml_fragment(xml: str, title: str) -> None:
+    try:
+        root = ET.fromstring(xml)
+    except ET.ParseError as exc:
+        raise ValueError(f"entry {title!r} has invalid XML fragment: {exc}") from exc
+    if root.tag not in {"mxGraphModel", "mxfile", "mxCell", "object"}:
+        raise ValueError(f"entry {title!r} XML fragment root should be mxGraphModel, mxfile, mxCell, or object")
+
+
 def sample_lean_spec() -> dict:
     return {
         "tags": "lean six sigma quality vsm kaizen sipoc kanban ctq waste",
@@ -204,7 +223,7 @@ def sample_architecture_spec() -> dict:
                 "title": "Data quality gate",
                 "tags": "data quality validation dq control",
                 "w": 190,
-                "h": 80,
+                "h": 100,
                 "xml": native_fragment("Data Quality", "eip", "content_filter", 190, 100, "aspect=fixed;verticalLabelPosition=bottom;verticalAlign=top;"),
             },
             {
@@ -235,14 +254,14 @@ def sample_architecture_spec() -> dict:
                 "title": "Observability",
                 "tags": "observability monitoring logs metrics traces alerts",
                 "w": 210,
-                "h": 80,
+                "h": 100,
                 "xml": native_fragment("Observability", "eip", "wire_tap", 210, 100, "aspect=fixed;verticalLabelPosition=bottom;verticalAlign=top;"),
             },
             {
                 "title": "Security control",
                 "tags": "security control waf iam firewall secrets",
-                "w": 190,
-                "h": 80,
+                "w": 130,
+                "h": 130,
                 "xml": native_fragment("Firewall / Security", "networks", "firewall", 130, 130, "aspect=fixed;verticalLabelPosition=bottom;verticalAlign=top;"),
             },
         ],
@@ -266,10 +285,13 @@ def file_to_data_uri(path: Path) -> str:
 
 
 def normalize_entry(entry: dict, base_dir: Path) -> dict:
+    title = str(entry.get("title", ""))
+    if not title:
+        raise ValueError("library entries need a title")
     out = {
-        "title": entry.get("title", ""),
-        "w": entry["w"],
-        "h": entry["h"],
+        "title": title,
+        "w": positive_int(entry.get("w"), "w", title),
+        "h": positive_int(entry.get("h"), "h", title),
     }
     if entry.get("tags"):
         out["tags"] = entry["tags"]
@@ -282,7 +304,11 @@ def normalize_entry(entry: dict, base_dir: Path) -> dict:
     elif entry.get("data"):
         out["data"] = entry["data"]
     else:
-        raise ValueError(f"entry {entry.get('title', '<untitled>')} needs xml/xml_path or data/data_path")
+        raise ValueError(f"entry {title!r} needs xml/xml_path or data/data_path")
+    if out.get("xml"):
+        validate_xml_fragment(str(out["xml"]), title)
+    if out.get("data") and not str(out["data"]).startswith("data:"):
+        raise ValueError(f"entry {title!r} data should be a data URI")
     for key in ("aspect", "style"):
         if entry.get(key):
             out[key] = entry[key]

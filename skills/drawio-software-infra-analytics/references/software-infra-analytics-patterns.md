@@ -15,6 +15,13 @@ Stencil selection:
 - Integration and data pipelines: `mxgraph.eip.channel_adapter`, `message_1`, `message_store`, `message_translator`, `content_filter`, `wire_tap`, `service_activator`, `process_manager`.
 - Cloud provider architecture: use `mxgraph.aws4.*`, `mxgraph.azure.*`, or `mxgraph.gcp.*` when the user names a provider; otherwise use `mxgraph.networks.*` for vendor-neutral topology.
 
+QA stencil checks:
+
+- Kubernetes: `visual_lint_drawio.py --strict --require-stencil-family kubernetes`.
+- Deployment/cloud/network topology: `visual_lint_drawio.py --strict --require-stencil-family networks`.
+- Data pipelines, EIP messaging, lakehouse ingestion/transform, and MLOps pipelines: `visual_lint_drawio.py --strict --require-stencil-family eip`.
+- C4 and sequence diagrams: do not require a native family; validate layout, boundaries, labels, and connector semantics instead.
+
 ## C4 and Software Architecture
 
 Context diagram:
